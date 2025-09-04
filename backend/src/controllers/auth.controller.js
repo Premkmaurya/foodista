@@ -1,4 +1,5 @@
 const userModel = require('../models/user.model');
+const sellerModel = require('../models/seller.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -16,7 +17,7 @@ const isUserExist = await userModel.findOne({email});
     
     const hashPassword = await bcrypt.hash(password,10);
 
-    const user = new userModel.create({
+    const user = await userModel.create({
         fullName,
         email,
         password:hashPassword
@@ -76,16 +77,16 @@ async function userLogout(req,res){
 //seller's controller functions
 async function sellerRegister(req,res) {
     const {fullName,email,password} = req.body;
-const isUserExist = await userModel.findOne({email});
+const isUserExist = await sellerModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
-            message:"User already exist"
+            message:"seller already exist"
         })
     }
     
     const hashPassword = await bcrypt.hash(password,10);
 
-    const user = new userModel.create({
+    const user = await sellerModel.create({
         fullName,
         email,
         password:hashPassword
@@ -96,7 +97,7 @@ const isUserExist = await userModel.findOne({email});
     res.cookie("token",token)
 
     return res.status(201).json({
-        message:"User registered successfully",
+        message:"seller registered successfully",
         user:{
             id:user._id,
             fullName:user.fullName,
@@ -107,8 +108,8 @@ const isUserExist = await userModel.findOne({email});
 
 async function sellerLogin(req,res){
     const {email,password} = req.body;
-    const user = await userModel.findOne({email});
-    if(!user){
+    const seller = await sellerModel.findOne({email});
+    if(!seller){
         return res.status(400).json({
            message:"email or password is incorrect."
         })
@@ -125,7 +126,7 @@ async function sellerLogin(req,res){
     res.cookie("token",token)
 
     return res.status(201).json({
-        message:"user logged in successfully.",
+        message:"seller logged in successfully.",
         user:{
             id:user._id,
             email:user.email,
@@ -136,7 +137,7 @@ async function sellerLogin(req,res){
 async function sellerLogout(req,res){
     res.clearCookie("token")
     return res.status(200).json({
-        message:"user logged out successfully."
+        message:"seller logged out successfully."
     })
 }
 
