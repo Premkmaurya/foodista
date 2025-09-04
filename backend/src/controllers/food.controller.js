@@ -11,17 +11,26 @@ async function createFood(req,res) {
     const food = await foodModel.create({
         name,
         description,
-        video:response,
+        video:response.url,
         seller:seller._id
     })
     
 
     res.status(200).json({
-        message:"video added successfully."
+        message:"video added successfully.",
         food
     })
 }
 
+async function getFood(req,res) {
+    const foods = await foodModel.find({})
+    res.status(200).json({
+        message:"food items fetched successfully.",
+        foods
+    })
+}
+
 module.exports = {
-    createFood
+    createFood,
+    getFood
 }
