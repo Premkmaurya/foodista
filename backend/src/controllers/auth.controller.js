@@ -6,9 +6,10 @@ const jwt = require('jsonwebtoken');
 
 
 //user's controller functions
+
 async function userRegister(req,res) {
-    const {fullName,email,password} = req.body;
-const isUserExist = await userModel.findOne({email});
+    const {name,email,password} = req.body;
+  const isUserExist = await userModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
             message:"User already exist"
@@ -18,7 +19,7 @@ const isUserExist = await userModel.findOne({email});
     const hashPassword = await bcrypt.hash(password,10);
 
     const user = await userModel.create({
-        fullName,
+        name,
         email,
         password:hashPassword
     })
@@ -31,7 +32,7 @@ const isUserExist = await userModel.findOne({email});
         message:"User registered successfully",
         user:{
             id:user._id,
-            fullName:user.fullName,
+            name:user.name,
             email:user.email
         }
     })
@@ -76,7 +77,7 @@ async function userLogout(req,res){
 
 //seller's controller functions
 async function sellerRegister(req,res) {
-    const {fullName,email,password} = req.body;
+    const {name,email,password} = req.body;
 const isUserExist = await sellerModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
@@ -87,7 +88,7 @@ const isUserExist = await sellerModel.findOne({email});
     const hashPassword = await bcrypt.hash(password,10);
 
     const user = await sellerModel.create({
-        fullName,
+        name,
         email,
         password:hashPassword
     })
@@ -100,7 +101,7 @@ const isUserExist = await sellerModel.findOne({email});
         message:"seller registered successfully",
         user:{
             id:user._id,
-            fullName:user.fullName,
+            name:user.name,
             email:user.email
         }
     })
