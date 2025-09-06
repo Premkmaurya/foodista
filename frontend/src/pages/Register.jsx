@@ -1,25 +1,27 @@
 import React from 'react'
 import Lottie from "lottie-react";
 import business  from "../assets/business.json"
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import axios from "axios"
+import {toast} from "react-toastify"
 
 function Register() {
+    const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const submitHandler = async (data) =>{
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/user/login",
+        "http://localhost:3000/api/auth/user/register",
         data,
         { withCredentials: true }
       );
-      toast.success("login successfully.");
+      toast.success("register successfully.");
       navigate("/");
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      toast.error(error.response.data)
     }
   }
 
