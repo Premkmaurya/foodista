@@ -115,22 +115,22 @@ async function sellerLogin(req,res){
            message:"email or password is incorrect."
         })
     }
-    const isPasswordCorrect = await bcrypt.compare(password,user.password)
+    const isPasswordCorrect = await bcrypt.compare(password,seller.password)
     if(!isPasswordCorrect){
         return res.status(400).json({
             message:"email or password is incorrect."
         })
     }
 
-    const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
+    const token = jwt.sign({id:seller._id},process.env.JWT_SECRET)
     
     res.cookie("token",token)
 
     return res.status(201).json({
         message:"seller logged in successfully.",
-        user:{
-            id:user._id,
-            email:user.email,
+        seller:{
+            id:seller._id,
+            email:seller.email,
         }
     })
 }
