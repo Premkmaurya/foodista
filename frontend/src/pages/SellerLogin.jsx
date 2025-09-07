@@ -3,7 +3,6 @@ import Lottie from "lottie-react";
 import business  from "../assets/business.json"
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import image from "../assets/image.jpg"
 
 function SellerLogin() {
 
