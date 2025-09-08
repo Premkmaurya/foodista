@@ -24,7 +24,7 @@ async function authSellerMiddleware(req, res, next) {
 async function authUserMiddleware(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
-        return res.status(400),json({
+        return res.status(400).json({
             message:"login first."
         })
     }

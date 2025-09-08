@@ -11,6 +11,15 @@ const sellerSchema = mongoose.Schema({
         unique:true,
         required:true
     },
+    address:{
+        type:String,
+        required:true
+    },
+    phone:{
+        type:Number,
+        unique:true,
+        required:true
+    },
     password:{
         type:String
     }

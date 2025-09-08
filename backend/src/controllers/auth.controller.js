@@ -77,7 +77,7 @@ async function userLogout(req,res){
 
 //seller's controller functions
 async function sellerRegister(req,res) {
-    const {name,email,password} = req.body;
+    const {name,phone,address,email,password} = req.body;
 const isUserExist = await sellerModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
@@ -90,6 +90,8 @@ const isUserExist = await sellerModel.findOne({email});
     const user = await sellerModel.create({
         name,
         email,
+        address,
+        phone,
         password:hashPassword
     })
 

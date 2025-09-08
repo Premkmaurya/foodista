@@ -24,9 +24,11 @@ async function createFood(req,res) {
 
 async function getFood(req,res) {
     const foods = await foodModel.find({})
+    const user = req.user
     res.status(200).json({
         message:"food items fetched successfully.",
-        foods
+        userId:user._id,
+        foods,
     })
 }
 
