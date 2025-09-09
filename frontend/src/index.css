@@ -79,3 +79,35 @@ body {
 .animate-blob {
   animation: blob 7s infinite;
 }
+.form-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: transparent;
+  border-radius: 50%;
+  height: 1.25em;
+  width: 1.25em;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+.form-radio:checked {
+  background-color: currentColor;
+  border-color: currentColor;
+}
+.form-radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: #101014;
+}
+
+

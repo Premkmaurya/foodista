@@ -40,7 +40,31 @@ async function authUserMiddleware(req, res, next) {
     }
 }
 
+async function foodGetMiddleware(req,res,next) {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({
+            message:"login first."
+        })
+    }
+    try{
+        const decoded = jwt.verify(token,process.env.JWT_SECRET)
+        const seller = await sellerModel.findById(decoded.id)
+        if(seller===null){
+            const user = await userModel.findById(decoded.id)
+            req.user = user;
+            next()
+        }else{
+            req.seller = seller;
+            next()
+        }
+    }catch(err){
+        console.log(err)
+    }
+}
+
 module.exports = {
     authSellerMiddleware,
-    authUserMiddleware
+    authUserMiddleware,
+    foodGetMiddleware
 }

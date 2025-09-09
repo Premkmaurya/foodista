@@ -7,20 +7,21 @@ import {useParams} from "react-router-dom"
 function sellerProfile() {
   const {id} = useParams();
   const profileRef = useRef(null);
+  const [seller,setSeller] = useState({})
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    // axios.get(`http://localhost:3000/api/food-partner/${id}`,{withCredentials:true})
-    // .then((response)=>{
-    // })
-    axios
-    .get("http://localhost:3000/api/food", { withCredentials: true })
-    .then((response) => {
-        setVideos(response.data.foods);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    axios.get(`http://localhost:3000/api/food-partner/${id}`,{withCredentials:true})
+    .then((response)=>{
+      setSeller(response.data.seller)
+    })
+    axios.get("http://localhost:3000/api/food", { withCredentials: true })
+    .then((response)=>{
+      setVideos(response.data.foods)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
     // Animate the main card on mount
     if (profileRef.current) {
       profileRef.current.classList.remove("opacity-0", "translate-y-10");
@@ -51,10 +52,10 @@ function sellerProfile() {
             <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping-slow"></div>
           </div>
           <h1 className="text-3xl text-black font-bold tracking-tight mb-2 opacity-0 animate-fade-in animation-delay-500">
-            UI/UX Studio
+            {seller.name}
           </h1>
           <p className="text-sm text-gray-400 mb-6 opacity-0 animate-fade-in animation-delay-700">
-            Digital Creator & Design Innovator
+            {seller.address}
           </p>
 
           {/* Stats section with hover animations */}
@@ -82,38 +83,39 @@ function sellerProfile() {
         <h2 className="text-xl text-black font-semibold mb-4 opacity-0 animate-fade-in animation-delay-1200">
           Featured Videos
         </h2>
-        <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 opacity-0 animate-fade-in animation-delay-1500">
-          {videos.map((video) => (
-            <div
-              key={video.id}
-              className="relative overflow-hidden shadow-md transition-all duration-300 transform hover:scale-105 group"
+        <div className="h-[600px] overflow-y-auto">
+  <div className="grid grid-cols-3 gap-2">
+    {videos.map((video) => (
+      <div
+        key={video._id}
+        className="relative shadow-md transition-all duration-300 transform group"
+      >
+        <video
+          muted
+          src={video.video}
+          alt={video.name}
+          className="w-full h-48 object-cover transition-all duration-300"
+        />
+        <div className="absolute inset-0 bg-black/40 bg-opacity-50 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="text-lg font-bold mb-1 text-white">{video.name}</span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
+          <div className="absolute bottom-4 right-4 text-white text-xs px-2 py-1 bg-black/30 bg-opacity-50 rounded-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 inline-block mr-1"
+              viewBox="0 0 24 24"
+              fill="currentColor"
             >
-              <video
-                muted
-                src={video.video}
-                alt={video.name}
-                className="w-full h-48 object-cover transition-all duration-300"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-lg font-bold mb-1 text-white">
-                  {video.name}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
-                <div className="absolute bottom-4 right-4 text-white text-xs px-2 py-1 bg-black bg-opacity-50 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 inline-block mr-1"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  Play
-                </div>
-              </div>
-            </div>
-          ))}
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Play
+          </div>
         </div>
+      </div>
+    ))}
+  </div>
+</div>
+
       </div>
     </div>
   );

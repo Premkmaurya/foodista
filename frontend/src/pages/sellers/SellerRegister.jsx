@@ -66,7 +66,7 @@ function SellerRegister() {
             {errors.password && <span className='text-red-700 text-xs'>This field is required</span>}
           </label>
           <button type="submit" className='w-full bg-blue-400 text-white py-3 hover:rounded-4xl mt-8 transition-all duration-300'>Register</button>
-          <p className='text-sm text-end'>already have an account?<Link to="/seller/login" className='text-blue-800 font-semibold underline'>Login</Link></p>
+          <p className='text-sm text-end'>already have an account?<Link to="/seller/create-food" className='text-blue-800 font-semibold underline'>Login</Link></p>
           </div>
         </form>
       </div>

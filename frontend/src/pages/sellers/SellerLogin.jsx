@@ -19,10 +19,10 @@ function SellerLogin() {
         { withCredentials: true }
       );
       toast.success("logged in successfully.");
-      navigate("/");
+      navigate("/seller/create-food");
     } catch (error) {
       console.log(error)
-      toast.error(error.response.data)
+      toast.error(error.response)
     }
     }
   
@@ -49,7 +49,7 @@ function SellerLogin() {
             {errors.password && <span className='text-red-700 leading-0 text-xs'>This field is required</span>}
           </label>
           <button type="submit" className='w-full bg-blue-400 text-white py-3 hover:rounded-4xl transition-all duration-300'>Login</button>
-          <p className='text-sm text-end'>don't have an account?<Link to="/register" className='text-blue-800 font-semibold underline'>Register</Link></p>
+          <p className='text-sm text-end'>don't have an account?<Link to="/seller/register" className='text-blue-800 font-semibold underline'>Register</Link></p>
         </form>
       </div>
       </div>

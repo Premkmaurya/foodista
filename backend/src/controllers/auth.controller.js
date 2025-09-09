@@ -5,10 +5,12 @@ const jwt = require('jsonwebtoken');
 
 
 
+
 //user's controller functions
 
 async function userRegister(req,res) {
     const {name,email,password} = req.body;
+    const profileImg = req.file;
   const isUserExist = await userModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
@@ -17,9 +19,10 @@ async function userRegister(req,res) {
     }
     
     const hashPassword = await bcrypt.hash(password,10);
-
+   
     const user = await userModel.create({
         name,
+        profileImg,
         email,
         password:hashPassword
     })
@@ -78,6 +81,7 @@ async function userLogout(req,res){
 //seller's controller functions
 async function sellerRegister(req,res) {
     const {name,phone,address,email,password} = req.body;
+    const profileImg = req.file;
 const isUserExist = await sellerModel.findOne({email});
     if(isUserExist){
         return res.status(400).json({
@@ -90,6 +94,7 @@ const isUserExist = await sellerModel.findOne({email});
     const user = await sellerModel.create({
         name,
         email,
+        profileImg,
         address,
         phone,
         password:hashPassword
