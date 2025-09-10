@@ -42,6 +42,7 @@ async function authUserMiddleware(req, res, next) {
 
 async function foodGetMiddleware(req,res,next) {
     const token = req.cookies.token;
+    let foodGetter = null;
     if (!token) {
         return res.status(401).json({
             message:"login first."
@@ -49,15 +50,12 @@ async function foodGetMiddleware(req,res,next) {
     }
     try{
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        const seller = await sellerModel.findById(decoded.id)
-        if(seller===null){
-            const user = await userModel.findById(decoded.id)
-            req.user = user;
-            next()
-        }else{
-            req.seller = seller;
-            next()
+        foodGetter = await sellerModel.findById(decoded.id)
+        if(foodGetter===null){
+            foodGetter = await userModel.findById(decoded.id)
         }
+        req.foodGetter = foodGetter;
+        next()
     }catch(err){
         console.log(err)
     }

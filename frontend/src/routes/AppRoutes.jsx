@@ -10,6 +10,7 @@ import CreateFood from "../pages/sellers/CreateFood";
 import { context } from "../context/AuthContext";
 import SellerProtectedRoute from "../utils/SellerProtectedRoute";
 import ProtectedRoute from "../utils/ProtectedRoute";
+import UserProfile from "../pages/users/UserProfile";
 
 function AppRoutes() {
   const { loggedIn } = useContext(context);
@@ -20,6 +21,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user/profile/:id"
+        element={
+          <ProtectedRoute>
+            <UserProfile />
           </ProtectedRoute>
         }
       />
