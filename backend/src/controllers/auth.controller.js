@@ -29,7 +29,9 @@ async function userRegister(req,res) {
 
     const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-    res.cookie("token",token)
+    res.cookie("token",token,{
+        expires: new Date("2038-12-31")
+    })
 
     return res.status(201).json({
         message:"User registered successfully",
@@ -58,7 +60,9 @@ async function userLogin(req,res){
 
     const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
     
-    res.cookie("token",token)
+    res.cookie("token",token,{
+        expires: new Date("2038-12-31")
+    })
 
     return res.status(201).json({
         message:"user logged in successfully.",
@@ -102,7 +106,9 @@ const isUserExist = await sellerModel.findOne({email});
 
     const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
 
-    res.cookie("token",token)
+    res.cookie("token",token,{
+        expires: new Date("2038-12-31")
+    })
 
     return res.status(201).json({
         message:"seller registered successfully",
@@ -131,7 +137,9 @@ async function sellerLogin(req,res){
 
     const token = jwt.sign({id:seller._id},process.env.JWT_SECRET)
     
-    res.cookie("token",token)
+    res.cookie("token",token,{
+        expires: new Date("2038-12-31")
+    })
 
     return res.status(201).json({
         message:"seller logged in successfully.",

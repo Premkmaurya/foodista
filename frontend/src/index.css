@@ -3,6 +3,15 @@
 body {
   font-family: "Inter", sans-serif;
 }
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 @keyframes fade-in {
   from {

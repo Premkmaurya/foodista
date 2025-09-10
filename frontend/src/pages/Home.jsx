@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate()
   const {loggedIn} = useContext(context)
   const [videos, setVideos] = useState([]);
-  const containerRefs = useRef([]); // Store refs to each video container
+  const containerRefs = useRef([]); 
 
   // Fetching videos
   useEffect(() => {
@@ -64,7 +64,8 @@ function Home() {
   }, [videos]);
 
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
+    <>
+    <div className="container h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
       {videos.map((video, idx) => (
         <div
           key={idx}
@@ -103,7 +104,10 @@ function Home() {
           </div>
         </div>
       ))}
+      
     </div>
+    
+   </>
   );
 }
 
