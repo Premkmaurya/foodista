@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { FaRegComment } from "react-icons/fa";
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import { context } from "../context/AuthContext";
 
 function Home() {
   const navigate = useNavigate()
+  const {loggedIn} = useContext(context)
   const [videos, setVideos] = useState([]);
-  const [seller, setSeller] = useState('')
   const containerRefs = useRef([]); // Store refs to each video container
 
   // Fetching videos
@@ -22,7 +23,7 @@ function Home() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [loggedIn]);
 
   // Intersection Observer logic
   useEffect(() => {

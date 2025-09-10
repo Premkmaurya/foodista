@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import business from "../../assets/business.json";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {toast} from "react-toastify";
+import { context } from "../../context/AuthContext"
 
 function Login() {
+  const {setLoggedIn} = useContext(context)
   const navigate = useNavigate();
   const {
     register,
@@ -22,6 +24,7 @@ function Login() {
         { withCredentials: true }
       );
       toast.success("login successfully.");
+      setLoggedIn(true)
       navigate("/");
     } catch (error) {
       toast.error(error.message)
@@ -31,7 +34,7 @@ function Login() {
   return (
     <>
       <div className="h-screen w-screen flex text-white">
-        <div className="w-[65%] h-full flex ">
+        <div className="w-0 h-full flex ">
           <div className="w-full h-full flex relative bg-blue-400 overflow-hidden">
             <Lottie
               className="absolute -top-[4rem] -left-[2.3rem] w-full h-full object-cover"
@@ -41,13 +44,16 @@ function Login() {
             ;
           </div>
         </div>
-        <div className="w-[35%] h-full flex justify-center items-center">
+        <div className="w-[100%] h-full flex justify-center items-center">
           <div className="w-[90%] h-[65%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
             <form
               onSubmit={handleSubmit(submitHandler)}
               className="w-full h-full flex flex-col gap-5 px-6 py-4"
             >
+            <div>
               <h1 className="text-2xl text-center">Login</h1>
+              <h1 className="text-md text-center">Login as a <button className="text-blue-500 underline cursor-pointer" onClick={()=>navigate("/seller/login")} >Selller</button> </h1>
+            </div>
               <label htmlFor="email">
                 email:-
                 <input
