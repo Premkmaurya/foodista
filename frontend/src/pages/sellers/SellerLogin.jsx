@@ -44,7 +44,7 @@ function SellerLogin() {
           </div>
         </div>
         <div className="w-full sm:w-[35%] h-full flex justify-center items-center">
-          <div className="w-[90%] h-[65%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
+          <div className="w-[90%] h-[50%] sm:h-[65%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
             <form
               onSubmit={handleSubmit(submitHandler)}
               className="w-full h-full flex flex-col gap-5 px-6 py-4"
