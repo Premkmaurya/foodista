@@ -90,11 +90,11 @@ function Register() {
               />
               <button
                 onClick={() => fileRef.current.click()}
-                className="bg-gray-400 w-14 h-14 flex items-center justify-center cursor-pointer rounded-full"
+                className=" w-14 h-14 flex items-center border-1 justify-center cursor-pointer rounded-full"
               >
                 {profilePreview ? <img src={profilePreview} alt="Profile" className="w-full h-full object-cover rounded-full" /> : <FaRegUser size={24} />}
               </button>
-              <div className="absolute bottom-1 right-[36%] w-7 h-7 flex items-center justify-center cursor-pointer rounded-full">
+              <div className="absolute bottom-1 right-[38%] w-7 h-7 flex items-center justify-center cursor-pointer rounded-full">
                 <MdEdit size={18} />
               </div>
             </div>
