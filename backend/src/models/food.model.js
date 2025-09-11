@@ -21,6 +21,16 @@ const foodSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"seller",
         required:true
+    },
+    likeCount:{
+        type:Number,
+        default:0,
+        min: 0
+    },
+    saveCount:{
+        type:Number,
+        default:0,
+        min: 0
     }
 },{
     timestamps:true

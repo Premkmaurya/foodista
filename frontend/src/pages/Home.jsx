@@ -65,6 +65,17 @@ function Home() {
     };
   }, [videos]);
 
+  const likeHandler = async (foodId) => {
+      const response = await axios.post("http://localhost:3000/api/food/like",{foodId},{
+        withCredentials:true
+      })
+  }
+  const saveHandler = async (foodId) => {
+      const response = await axios.post("http://localhost:3000/api/food/save",{foodId},{
+        withCredentials:true
+      })
+  }
+
   return (
     <>
       <div className="container h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
@@ -83,12 +94,14 @@ function Home() {
                 playsInline
                 preload="metadata"
               />
-              <div className="w-[4rem] h-full absolute right-0 bottom-[11rem] flex flex-col gap-5 justify-end items-center">
-                <div className="hover:bg-white/30 transition-all rounded-full w-12 h-12 flex items-center justify-center">
-                  <AiOutlineLike color={"white"} size={29} />
+              <div className="w-[4rem] h-full absolute text-white right-0 bottom-[11rem] flex flex-col gap-5 justify-end items-center">
+                <div className="hover:bg-white/30 flex-col transition-all rounded-full w-12 h-12 flex items-center justify-center">
+                  <AiOutlineLike onClick={()=>likeHandler(video._id)} color={"white"} size={29} />
+                  <p>{video.likeCount !=0 && video.likeCount}</p>
                 </div>
-                <div className="hover:bg-white/30 transition-all rounded-full w-12 h-12 flex items-center justify-center">
-                  <IoBookmarkOutline color={"white"} size={29} />
+                <div className="hover:bg-white/30 flex-col transition-all rounded-full w-12 h-12 flex items-center justify-center">
+                  <IoBookmarkOutline onClick={()=>saveHandler(video._id)} color={"white"} size={29} />
+                    <p>{video.saveCount !=0 && video.saveCount}</p>
                 </div>
                 <div className="hover:bg-white/30 transition-all rounded-full w-12 h-12 flex items-center justify-center">
                   <FaRegComment color={"white"} size={25} />

@@ -1,42 +1,105 @@
-const foodModel = require('../models/food.model');
-const {uploadVideo} = require('../services/storage.service');
-const {v4:uuidv4} = require('uuid');
+const foodModel = require("../models/food.model");
+const likeModel = require("../models/like.model");
+const saveModel = require("../models/save.model");
+const { uploadVideo } = require("../services/storage.service");
+const { v4: uuidv4 } = require("uuid");
 
-async function createFood(req,res) {
-    const {name,ingredients,description} = req.body;
-    const video = req.file;
-    const seller =req.seller;
-    const response = await uploadVideo(video.buffer,`${uuidv4()}`)
+async function createFood(req, res) {
+  const { name, ingredients, description } = req.body;
+  const video = req.file;
+  const seller = req.seller;
+  const response = await uploadVideo(video.buffer, `${uuidv4()}`);
 
-    
-    const food = await foodModel.create({
-        name,
-        ingredients,
-        description,
-        video:response.url,
-        seller:seller._id
-    })
-    
+  const food = await foodModel.create({
+    name,
+    ingredients,
+    description,
+    video: response.url,
+    seller: seller._id,
+  });
 
+  return res.status(200).json({
+    message: "video added successfully.",
+    food,
+  });
+}
+
+async function getFood(req, res) {
+  const foods = await foodModel.find({});
+  const foodGetter = req.foodGetter;
+  res.status(200).json({
+    message: "food items fetched successfully.",
+    foods,
+    foodGetter,
+  });
+}
+
+async function likeFood(req, res) {
+  const {foodId} = req.body;
+  const user = req.user;
+  const isUserLiked = await likeModel.findOne({
+    food: foodId,
+    user: user._id,
+  });
+  if (isUserLiked) {
+    await likeModel.deleteOne({
+      user: user._id,
+      food: foodId,
+    });
+    await foodModel.findByIdAndUpdate(foodId, {
+      $inc: { likeCount: -1 },
+    });
     return res.status(200).json({
-        message:"video added successfully.",
-        food
-    })
+      message: "video unliked successfully.",
+    });
+  }
+  const response = await likeModel.create({
+    user: user._id,
+    food: foodId,
+  });
+  await foodModel.findByIdAndUpdate(foodId, {
+    $inc: { likeCount: 1 },
+  });
+  res.status(200).json({
+    message: "like successfully.",
+  });
 }
 
-async function getFood(req,res) {
-    const foods = await foodModel.find({})
-    const foodGetter = req.foodGetter;
-    res.status(200).json({
-        message:"food items fetched successfully.",
-        foods,
-        foodGetter
-    })
+async function saveFood(req, res) {
+  const { foodId } = req.body;
+  const user = req.user;
+  const isUserSaved = await saveModel.findOne({
+    food: foodId,
+    user: user._id,
+  });
+  if (isUserSaved) {
+    await saveModel.deleteOne({
+      user: user._id,
+      food: foodId,
+    });
+    await foodModel.findByIdAndUpdate(foodId, {
+      $inc: { saveCount: -1 },
+    });
+    return res.status(201).json({
+      message: "video unsaved successfully.",
+    });
+  }
+
+  const response = await saveModel.create({
+    user: user._id,
+    food: foodId,
+  });
+  await foodModel.findByIdAndUpdate(foodId, {
+    $inc: { saveCount: 1 },
+  });
+  res.status(200).json({
+    message: "save successfully.",
+  });
 }
-
-
 
 module.exports = {
-    createFood,
-    getFood,
-}
+  createFood,
+  getFood,
+  likeFood,
+  saveFood,
+};

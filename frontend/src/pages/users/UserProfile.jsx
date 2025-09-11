@@ -2,25 +2,20 @@ import React, { useRef, useEffect,useState } from "react";
 import "../../index.css";
 import axios from "axios"
 import {useParams} from "react-router-dom"
-
+import { IoBookmarkOutline } from "react-icons/io5";
+import { AiOutlineLike } from "react-icons/ai";
+import { FaRegUser } from "react-icons/fa";
 
 function UserProfile() {
   const {id} = useParams();
   const profileRef = useRef(null);
-  const [seller,setSeller] = useState({})
+  const [user,setUser] = useState({})
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/food-partner/${id}`,{withCredentials:true})
+    axios.get(`http://localhost:3000/api/user/${id}`,{withCredentials:true})
     .then((response)=>{
-      setSeller(response.data.seller)
-    })
-    axios.get("http://localhost:3000/api/food", { withCredentials: true })
-    .then((response)=>{
-      setVideos(response.data.foods)
-    })
-    .catch(err=>{
-      console.log(err)
+      setUser(response.data.user)
     })
     // Animate the main card on mount
     if (profileRef.current) {
@@ -44,19 +39,19 @@ function UserProfile() {
         <div className="flex flex-col items-center">
           {/* Profile image with glow animation */}
           <div className="relative mb-6">
-            <img
-              src="https://placehold.co/120x120/3A3A4A/EAEAEB?text=UI"
+            {user.profileImg ? 
+              <img
+              src={user.profileImg}
               alt="Profile"
               className="w-32 h-32 rounded-full border-2 border-white border-opacity-20 shadow-lg object-cover animate-pulse-glow"
-            />
+            /> :
+              <FaRegUser size={38} />
+              }
             <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping-slow"></div>
           </div>
           <h1 className="text-3xl text-black font-bold tracking-tight mb-2 opacity-0 animate-fade-in animation-delay-500">
-            {seller.name}
+            {user.name}
           </h1>
-          <p className="text-sm text-gray-400 mb-6 opacity-0 animate-fade-in animation-delay-700">
-            {seller.address}
-          </p>
 
           {/* Stats section with hover animations */}
           <div className="grid grid-cols-2 gap-3 w-full text-center mb-8 opacity-0 animate-fade-in animation-delay-1000">
@@ -80,9 +75,14 @@ function UserProfile() {
         </div>
 
         {/* Video grid section */}
-        <h2 className="text-xl text-black font-semibold mb-4 opacity-0 animate-fade-in animation-delay-1200">
-          Featured Videos
-        </h2>
+        <div className="flex w-full mt-[2rem] opacity-0 animate-fade-in animation-delay-1200 border-b-2 border-black/30">
+          <div className="w-[50%] pb-3 hover:scale-110 cursor-pointer transition-all duration-300 transform flex items-center justify-center border-r-2 border-black/30">
+            <AiOutlineLike color="black" size={30} />
+          </div>
+          <div className="w-[50%] pb-3 hover:scale-110 cursor-pointer transition-all duration-300 transform flex items-center justify-center">
+            <IoBookmarkOutline color="black" size={30} />
+          </div>
+        </div>
         <div className="h-[600px] overflow-y-auto">
   <div className="grid grid-cols-3 gap-2">
     {videos.map((video) => (
