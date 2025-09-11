@@ -34,7 +34,7 @@ function Login() {
   return (
     <>
       <div className="h-screen w-screen flex text-white">
-        <div className="w-0 h-full flex ">
+        <div className="w-0 sm:w-[65%] h-full flex ">
           <div className="w-full h-full flex relative bg-blue-400 overflow-hidden">
             <Lottie
               className="absolute -top-[4rem] -left-[2.3rem] w-full h-full object-cover"
@@ -44,8 +44,8 @@ function Login() {
             ;
           </div>
         </div>
-        <div className="w-[100%] h-full flex justify-center items-center">
-          <div className="w-[90%] h-[65%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
+        <div className="w-[100%] sm:w-[35%] h-full flex justify-center items-center">
+          <div className="w-[90%] h-[50%] sm:h-[65%] bg-white flex items-center justify-center text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
             <form
               onSubmit={handleSubmit(submitHandler)}
               className="w-full h-full flex flex-col gap-5 px-6 py-4"
