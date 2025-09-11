@@ -6,7 +6,7 @@ const imagekit = new ImageKit({
     urlEndpoint : process.env.URLENDPOINT
 });
 
-async function uploadImage(file,filename){
+async function uploadVideo(file,filename){
     const response = await imagekit.upload({
         file:file,
         fileName:filename,
@@ -14,5 +14,16 @@ async function uploadImage(file,filename){
     })
     return response;
 }
+async function uploadImage(file,filename){
+    const response = await imagekit.upload({
+        file:file,
+        fileName:filename,
+        folder:"profiles"
+    })
+    return response;
+}
 
-module.exports = uploadImage;
+module.exports = {
+    uploadVideo,
+    uploadImage
+};

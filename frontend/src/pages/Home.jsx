@@ -101,7 +101,7 @@ function Home() {
                   className="flex items-start space-x-4 mb-2"
                 >
                   <img
-                    src={video.pic}
+                    src={video.profileImg}
                     alt="Profile"
                     className="w-12 h-12 rounded-full border-2 border-white"
                   />

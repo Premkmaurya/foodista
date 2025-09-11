@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Lottie from "lottie-react";
 import business from "../../assets/business.json";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaRegUser } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 
 function Register() {
   const navigate = useNavigate();
+  const fileRef = useRef(null);
+  const [profilePreview, setProfilePreview] = useState()
+  const [profile, setProfile] = useState()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const handleUploadClick = (event) => {
+    const file = event.target.files[0];
+    setProfile(file)
+    const insideImageUrl =
+      typeof file === "string"
+        ? file
+        : URL.createObjectURL(file);
+    setProfilePreview(insideImageUrl)
+  };
+
   const submitHandler = async (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("profileImg", profile)
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/user/register",
-        data,
+        formData,
         { withCredentials: true }
       );
       toast.success("register successfully.");
@@ -42,7 +62,7 @@ function Register() {
         </div>
       </div>
       <div className="w-full sm:w-[35%] h-full flex justify-center items-center">
-        <div className="w-[90%] h-[80%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
+        <div className="w-[90%] h-[70%] sm:h-[90%] bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
           <form
             onSubmit={handleSubmit(submitHandler)}
             className="w-full h-full flex flex-col gap-2 px-6 py-4"
@@ -59,7 +79,26 @@ function Register() {
                 </button>{" "}
               </h1>
             </div>
-            <div className="w-full h-full flex flex-col gap-1 mt-10">
+            <div className="relative w-full flex justify-center mt-3">
+              <input
+                {...register("profileImg")}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleUploadClick}
+                ref={fileRef}
+              />
+              <button
+                onClick={() => fileRef.current.click()}
+                className="bg-gray-400 w-14 h-14 flex items-center justify-center cursor-pointer rounded-full"
+              >
+                {profilePreview ? <img src={profilePreview} alt="Profile" className="w-full h-full object-cover rounded-full" /> : <FaRegUser size={24} />}
+              </button>
+              <div className="absolute bottom-1 right-[36%] w-7 h-7 flex items-center justify-center cursor-pointer rounded-full">
+                <MdEdit size={18} />
+              </div>
+            </div>
+            <div className="w-full h-full flex flex-col gap-1 mt-5">
               <label htmlFor="name">
                 Name:-
                 <input

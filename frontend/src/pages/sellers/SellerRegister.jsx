@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Lottie from "lottie-react";
 import business from "../../assets/business.json";
 import { Link } from "react-router-dom";
@@ -6,21 +6,41 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 
 function SellerRegister() {
   const navigate = useNavigate();
+  const fileRef = useRef(null);
+  const uploadBtnRef = useRef(null);
+  const [profilePreview, setProfilePreview] = useState();
+  const [profile, setProfile] = useState();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const handleUploadClick = (event) => {
+    const file = event.target.files[0];
+    setProfile(file);
+    const insideImageUrl =
+      typeof file === "string" ? file : URL.createObjectURL(file);
+    setProfilePreview(insideImageUrl);
+  };
+
   const submitHandler = async (data) => {
-    console.log(data);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
+    formData.append("address", data.address);
+    formData.append("password", data.password);
+    formData.append("profileImg", profile);
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/seller/register",
-        data,
+        formData,
         { withCredentials: true }
       );
       toast.success("register successfully.");
@@ -32,8 +52,8 @@ function SellerRegister() {
   };
 
   return (
-    <div className="h-screen w-screen flex text-white">
-      <div className="w-0 sm:w-[65%] h-full flex ">
+    <div className="container min-h-screen w-screen flex text-white overflow-x-hidden relative">
+      <div className="w-0 sm:w-[65%] h-full flex fixed top-0 left-0">
         <div className="w-full h-full flex relative bg-blue-400 overflow-hidden">
           <Lottie
             className="absolute -top-[4rem] -left-[2.3rem] w-full h-full object-cover"
@@ -43,7 +63,7 @@ function SellerRegister() {
           ;
         </div>
       </div>
-      <div className="w-full sm:w-[35%] h-full flex justify-center items-center">
+      <div className="sm:absolute sm:right-0 sm:top-0 w-full sm:w-[35%] sm:h-[115vh] flex justify-center items-center">
         <div className="w-[90%] h-full bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
           <form
             onSubmit={handleSubmit(submitHandler)}
@@ -64,6 +84,37 @@ function SellerRegister() {
             <p className="text-xs text-center leading-0 tracking-tight">
               Grow your business with our platform.
             </p>
+            <div className="relative w-full flex justify-center mt-3">
+              <input
+                {...register("profileImg", { required: true })}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleUploadClick}
+                ref={fileRef}
+              />
+              {errors.profileImg && (
+                  uploadBtnRef.current.classList.add("ring-2","ring-red-400")
+              )}
+              <button
+                ref={uploadBtnRef}
+                onClick={() => fileRef.current.click()}
+                className="bg-gray-400 w-14 h-14 flex items-center justify-center cursor-pointer rounded-full"
+              >
+                {profilePreview ? (
+                  <img
+                    src={profilePreview}
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                ) : (
+                  <FaRegUser size={24} />
+                )}
+              </button>
+              <div className="absolute bottom-1 right-[36%] w-7 h-7 flex items-center justify-center cursor-pointer rounded-full">
+                <MdEdit size={18} />
+              </div>
+            </div>
             <div className="w-full h-full flex flex-col gap-1 mt-10">
               <label htmlFor="name">
                 Business Name:-

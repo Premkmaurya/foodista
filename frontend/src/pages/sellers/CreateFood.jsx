@@ -106,7 +106,7 @@ const CreateFood = () => {
               {errors.description && <p className="text-red-400 text-sm mt-1">this field is required</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-black/80 mb-2">
                 Dish Photo
               </label>
               <input

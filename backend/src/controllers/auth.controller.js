@@ -2,8 +2,8 @@ const userModel = require('../models/user.model');
 const sellerModel = require('../models/seller.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-
+const {uploadImage} = require('../services/storage.service');
+const {v4:uuidv4} = require('uuid');
 
 
 //user's controller functions
@@ -19,10 +19,11 @@ async function userRegister(req,res) {
     }
     
     const hashPassword = await bcrypt.hash(password,10);
+    const response = await uploadImage(profileImg.buffer,`${uuidv4()}`);
    
     const user = await userModel.create({
         name,
-        profileImg,
+        profileImg:response.url,
         email,
         password:hashPassword
     })
