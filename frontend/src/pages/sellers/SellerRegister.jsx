@@ -64,7 +64,7 @@ function SellerRegister() {
         </div>
       </div>
       <div className="sm:absolute sm:right-0 sm:top-0 w-full sm:w-[35%] sm:h-[115vh] flex justify-center items-center">
-        <div className="w-[90%] h-full bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
+        <div className="w-[90%] h-[90%] sm:h-full bg-white text-black rounded-lg shadow-black shadow-2xl ring ring-gray-300">
           <form
             onSubmit={handleSubmit(submitHandler)}
             className="w-full h-full flex flex-col gap-2 px-6 py-4"
