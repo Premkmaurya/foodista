@@ -57,7 +57,7 @@ async function authMiddleware(req,res,next) {
         req.authToken = authToken;
         next()
     }catch(err){
-        res.status(400).json({
+        return res.status(400).json({
             message:err
         })
     }

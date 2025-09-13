@@ -2,9 +2,21 @@ import React, { useState, useReducer, useEffect } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const cartReducer = (state, action) => {
   switch (action.type) {
+    case "SET_CART":
+      return action.cart.map(item => ({
+        id: item._id,
+        foodId: item.food._id,
+        name: item.food.name,
+        video: item.food.video,
+        price: item.food.price || 0, // fallback if price missing
+        quantity: item.quantity || 1, // fallback if quantity missing
+        raw: item // keep original if needed
+      }));
     case "REMOVE_ITEM":
       return state.filter((item) => item.id !== action.id);
     case "INCREMENT_QUANTITY":
@@ -22,45 +34,32 @@ const cartReducer = (state, action) => {
   }
 };
 
-const initialCart = [
-  {
-    id: 1,
-    name: "Cartle Watch",
-    price: 600,
-    quantity: 1,
-    image: "https://placehold.co/100x100/966FEE/FFFFFF?text=Cartle+Watch",
-  },
-  {
-    id: 2,
-    name: "Modern Chair",
-    price: 500,
-    quantity: 1,
-    image: "https://placehold.co/100x100/A2D0C5/FFFFFF?text=Modern+Chair",
-  },
-  {
-    id: 3,
-    name: "Beats Headset",
-    price: 200,
-    quantity: 1,
-    image: "https://placehold.co/100x100/7864D7/FFFFFF?text=Beats+Headset",
-  },
-  {
-    id: 4,
-    name: "Blue Shoes",
-    price: 99,
-    quantity: 1,
-    image: "https://placehold.co/100x100/1E90FF/FFFFFF?text=Blue+Shoes",
-  },
-];
+
 
 const Cart = () => {
+
   const [isLoading, setIsLoading] = useState(false);
-  const [cart, dispatch] = useReducer(cartReducer, initialCart);
+  const [cart, dispatch] = useReducer(cartReducer, []);
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/food/cart", {
+          withCredentials: true,
+        });
+        // Pass raw cartItems to reducer, flattening will be handled there
+        dispatch({ type: "SET_CART", cart: response.data.cartItems || [] });
+      } catch (err) {
+        console.error("Cart fetch error:", err);
+      }
+    };
+    fetchCart();
+  }, []);
+
+  useEffect(() => {
     const calculatedSubtotal = cart.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + (item.price || 0) * (item.quantity || 1),
       0
     );
     setSubtotal(calculatedSubtotal);
@@ -77,10 +76,13 @@ const Cart = () => {
       <main className="relative z-1 flex-grow overflow-y-auto p-3">
         {cart.length > 0 ? (
           cart.map((item) => (
-            <div key={item.id} className="relative flex items-center p-4 bg-gray-100 rounded-2xl shadow-sm mb-4">
+            <div
+              key={item.id}
+              className="relative flex items-center p-4 bg-gray-100 rounded-2xl shadow-sm mb-4"
+            >
               <div className="w-20 h-20 bg-white rounded-xl overflow-hidden mr-4 shadow-sm">
                 <video
-                  src={item.image}
+                  src={item.video}
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
@@ -101,7 +103,7 @@ const Cart = () => {
                   </button>
                 </div>
                 <p className="text-sm font-medium text-gray-600">
-                  ${item.price.toFixed(2)}
+                  ${item.price?.toFixed(2) ?? '0.00'}
                 </p>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">

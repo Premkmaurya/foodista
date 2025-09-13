@@ -132,10 +132,20 @@ async function saveFood(req, res) {
 
 }
 
+async function getCartFood(req, res) {
+  const user = req.user;
+  const cartItems = await cartModel.find({ user: user._id }).populate('food');
+  res.status(200).json({
+    message:"cart food fetched successfully",
+    cartItems
+  })
+}
+
 module.exports = {
   createFood,
   getFood,
   likeFood,
   saveFood,
-  cartFood
+  cartFood,
+  getCartFood
 };
