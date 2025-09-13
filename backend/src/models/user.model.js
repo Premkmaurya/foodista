@@ -16,6 +16,10 @@ const userSchema = mongoose.Schema({
     },
     password:{
         type:String
+    },
+    cart:{
+        type:Array,
+        default:[]
     }
 },{
     timestamps:true

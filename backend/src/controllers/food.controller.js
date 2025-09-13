@@ -1,3 +1,4 @@
+const cartModel = require("../models/cart.model");
 const foodModel = require("../models/food.model");
 const likeModel = require("../models/like.model");
 const saveModel = require("../models/save.model");
@@ -66,6 +67,38 @@ async function likeFood(req, res) {
   });
 }
 
+async function cartFood(req, res) {
+  const { foodId } = req.body;
+  const user = req.user;
+  const isUserSaved = await cartModel.findOne({
+    food: foodId,
+    user: user._id,
+  });
+  if (isUserSaved) {
+    await cartModel.deleteOne({
+      user: user._id,
+      food: foodId,
+    });
+    await foodModel.findByIdAndUpdate(foodId, {
+      $inc: { cartCount: -1 },
+    });
+    return res.status(200).json({
+      message: "video remove from cart.",
+    });
+  }
+
+  const response = await cartModel.create({
+    user: user._id,
+    food: foodId,
+  });
+  await foodModel.findByIdAndUpdate(foodId, {
+    $inc: { cartCount: 1 },
+  });
+  return res.status(200).json({
+    message: "add to cart successfully.",
+  });
+}
+
 async function saveFood(req, res) {
   const { foodId } = req.body;
   const user = req.user;
@@ -96,6 +129,7 @@ async function saveFood(req, res) {
   res.status(200).json({
     message: "save successfully.",
   });
+
 }
 
 module.exports = {
@@ -103,4 +137,5 @@ module.exports = {
   getFood,
   likeFood,
   saveFood,
+  cartFood
 };

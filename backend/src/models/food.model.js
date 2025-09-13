@@ -35,7 +35,13 @@ const foodSchema = new mongoose.Schema({
         type:Number,
         default:0,
         min: 0
-    }
+    },
+    cartCount:{
+        type:Number,
+        default:0,
+        min: 0
+    },
+
 },{
     timestamps:true
 })

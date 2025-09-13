@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoBookmarkOutline } from "react-icons/io5";
-import { FaRegComment } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context } from "../context/AuthContext";
+import Nav from "../components/Nav";
 
 function Home() {
   const navigate = useNavigate();
   const { loggedIn } = useContext(context);
   const [videos, setVideos] = useState([]);
   const containerRefs = useRef([]);
-  const [activeTab, setActiveTab] = useState("home");
   const [foodGetter, setFoodGetter] = useState(null);
 
   // Fetching videos
@@ -66,15 +66,36 @@ function Home() {
   }, [videos]);
 
   const likeHandler = async (foodId) => {
-      const response = await axios.post("http://localhost:3000/api/food/like",{foodId},{
-        withCredentials:true
-      })
-  }
+    const response = await axios.post(
+      "http://localhost:3000/api/food/like",
+      { foodId },
+      {
+        withCredentials: true,
+      }
+    );
+  };
   const saveHandler = async (foodId) => {
-      const response = await axios.post("http://localhost:3000/api/food/save",{foodId},{
-        withCredentials:true
-      })
-  }
+    const response = await axios.post(
+      "http://localhost:3000/api/food/save",
+      { foodId },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+  const cartHandler = async (foodId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/food/cart",
+        { foodId },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.error("Cart error:", error);
+    }
+  };
 
   return (
     <>
@@ -94,24 +115,36 @@ function Home() {
                 playsInline
                 preload="metadata"
               />
-              <div className="w-[4rem] h-full absolute text-white right-0 bottom-[11rem] flex flex-col gap-5 justify-end items-center">
+              <div className="w-[4rem] h-full absolute z-10 text-white right-0 bottom-[13rem] flex flex-col gap-5 justify-end items-center">
                 <div className="hover:bg-white/30 flex-col transition-all rounded-full w-12 h-12 flex items-center justify-center">
-                  <AiOutlineLike onClick={()=>likeHandler(video._id)} color={"white"} size={29} />
-                  <p>{video.likeCount !=0 && video.likeCount}</p>
+                  <AiOutlineLike
+                    onClick={() => likeHandler(video._id)}
+                    color={"white"}
+                    size={29}
+                  />
+                  <p>{video.likeCount != 0 && video.likeCount}</p>
                 </div>
                 <div className="hover:bg-white/30 flex-col transition-all rounded-full w-12 h-12 flex items-center justify-center">
-                  <IoBookmarkOutline onClick={()=>saveHandler(video._id)} color={"white"} size={29} />
-                    <p>{video.saveCount !=0 && video.saveCount}</p>
+                  <IoBookmarkOutline
+                    onClick={() => saveHandler(video._id)}
+                    color={"white"}
+                    size={29}
+                  />
+                  <p>{video.saveCount != 0 && video.saveCount}</p>
                 </div>
-                <div className="hover:bg-white/30 transition-all rounded-full w-12 h-12 flex items-center justify-center">
-                  <FaRegComment color={"white"} size={25} />
+                <div
+                  onClick={() => cartHandler(video._id)}
+                  className="hover:bg-white/30 flex-col transition-all rounded-full w-12 h-12 flex items-center justify-center"
+                >
+                  <IoCartOutline color={"white"} size={28} />
+                  <p>{video.cartCount != 0 && video.cartCount}</p>
                 </div>
               </div>
               <div className="absolute inset-x-0 bottom-0 pb-[5.5rem] bg-gradient-to-t from-black via-black/60 to-transparent p-4 text-white">
                 {/* Profile and Details */}
                 <div
                   onClick={() => navigate(`/seller/profile/${video.seller}`)}
-                  className="flex items-start space-x-4 mb-2"
+                  className="flex w-fit items-start space-x-4 mb-2"
                 >
                   <img
                     src={video.profileImg}
@@ -131,41 +164,7 @@ function Home() {
                   Order Now
                 </button>
               </div>
-              <nav className="fixed bottom-0 inset-x-0 bg-black/50 backdrop-blur-xl border-t border-gray-700 py-3 px-4 flex justify-around items-center">
-                <button
-                  onClick={() => setActiveTab("home")}
-                  className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
-                    activeTab === "home" ? "text-white" : "text-gray-500"
-                  }`}
-                >
-                  <svg
-                    className="w-6 h-6 mb-1"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                  </svg>
-                  Home
-                </button>
-                <button
-                  onClick={() => {
-                    foodGetter.address == undefined ? navigate(`/user/profile/${foodGetter._id}`) : navigate(`/seller/profile/${foodGetter._id}`);
-                    setActiveTab("profile");
-                  }}
-                  className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
-                    activeTab === "profile" ? "text-white" : "text-gray-500"
-                  }`}
-                >
-                  <svg
-                    className="w-6 h-6 mb-1"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                  Profile
-                </button>
-              </nav>
+              <Nav foodGetter={foodGetter} />
             </div>
           </div>
         ))}
