@@ -53,50 +53,6 @@ const initialCart = [
   },
 ];
 
-const CartItem = ({ item, dispatch }) => (
-  <div className="relative flex items-center p-4 bg-gray-100 rounded-2xl shadow-sm mb-4">
-    <div className="w-20 h-20 bg-white rounded-xl overflow-hidden mr-4 shadow-sm">
-      <video
-        src={item.image}
-        alt={item.name}
-        className="w-full h-full object-cover"
-      />
-    </div>
-    <div className="flex-grow">
-      <div className="flex justify-between items-start mb-1">
-        <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-        <button
-          onClick={() => dispatch({ type: "REMOVE_ITEM", id: item.id })}
-          className="text-red-500 transition-colors"
-          aria-label="Delete item"
-        >
-          <MdOutlineDelete className="absolute right-0 top-3" />
-        </button>
-      </div>
-      <p className="text-sm font-medium text-gray-600">
-        ${item.price.toFixed(2)}
-      </p>
-    </div>
-    <div className="flex items-center space-x-2 text-gray-600">
-      <button
-        onClick={() => dispatch({ type: "DECREMENT_QUANTITY", id: item.id })}
-        className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
-        aria-label="Decrease quantity"
-      >
-        <FiMinus />
-      </button>
-      <span className="font-semibold">{item.quantity}</span>
-      <button
-        onClick={() => dispatch({ type: "INCREMENT_QUANTITY", id: item.id })}
-        className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
-        aria-label="Increase quantity"
-      >
-        <FaPlus />
-      </button>
-    </div>
-  </div>
-);
-
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cart, dispatch] = useReducer(cartReducer, initialCart);
@@ -121,7 +77,55 @@ const Cart = () => {
       <main className="relative z-1 flex-grow overflow-y-auto p-3">
         {cart.length > 0 ? (
           cart.map((item) => (
-            <CartItem key={item.id} item={item} dispatch={dispatch} />
+            <div key={item.id} className="relative flex items-center p-4 bg-gray-100 rounded-2xl shadow-sm mb-4">
+              <div className="w-20 h-20 bg-white rounded-xl overflow-hidden mr-4 shadow-sm">
+                <video
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-grow">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {item.name}
+                  </h3>
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "REMOVE_ITEM", id: item.id })
+                    }
+                    className="text-red-500 transition-colors"
+                    aria-label="Delete item"
+                  >
+                    <MdOutlineDelete className="absolute right-0 top-3" />
+                  </button>
+                </div>
+                <p className="text-sm font-medium text-gray-600">
+                  ${item.price.toFixed(2)}
+                </p>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-600">
+                <button
+                  onClick={() =>
+                    dispatch({ type: "DECREMENT_QUANTITY", id: item.id })
+                  }
+                  className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+                  aria-label="Decrease quantity"
+                >
+                  <FiMinus />
+                </button>
+                <span className="font-semibold">{item.quantity}</span>
+                <button
+                  onClick={() =>
+                    dispatch({ type: "INCREMENT_QUANTITY", id: item.id })
+                  }
+                  className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
+                  aria-label="Increase quantity"
+                >
+                  <FaPlus />
+                </button>
+              </div>
+            </div>
           ))
         ) : (
           <div className="text-center text-gray-500 mt-10">
