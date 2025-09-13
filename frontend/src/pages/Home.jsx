@@ -127,8 +127,8 @@ function Home() {
                 <p className="text-gray-200 mb-4">{video.description}</p>
 
                 {/* Buy Now Button */}
-                <button className="w-full px-6 py-3 bg-[#4285F4] text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:bg-[#357ae8] hover:shadow-xl transform hover:-translate-y-0.5">
-                  Buy now
+                <button className="w-full px-6 py-3 capatalize border-1 backdrop-blue-lg border-white bg-black/40 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:bg-[#357ae8] hover:shadow-xl transform hover:-translate-y-0.5">
+                  Order Now
                 </button>
               </div>
               <nav className="fixed bottom-0 inset-x-0 bg-black/50 backdrop-blur-xl border-t border-gray-700 py-3 px-4 flex justify-around items-center">

@@ -40,9 +40,9 @@ async function authUserMiddleware(req, res, next) {
     }
 }
 
-async function foodGetMiddleware(req,res,next) {
+async function authMiddleware(req,res,next) {
     const token = req.cookies.token;
-    let foodGetter = null;
+    let authToken = null;
     if (!token) {
         return res.status(401).json({
             message:"login first."
@@ -50,19 +50,21 @@ async function foodGetMiddleware(req,res,next) {
     }
     try{
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        foodGetter = await sellerModel.findById(decoded.id)
-        if(foodGetter===null){
-            foodGetter = await userModel.findById(decoded.id)
+        authToken = await sellerModel.findById(decoded.id)
+        if(authToken===null){
+            authToken = await userModel.findById(decoded.id)
         }
-        req.foodGetter = foodGetter;
+        req.authToken = authToken;
         next()
     }catch(err){
-        console.log(err)
+        res.status(400).json({
+            message:err
+        })
     }
 }
 
 module.exports = {
     authSellerMiddleware,
     authUserMiddleware,
-    foodGetMiddleware
+    authMiddleware
 }

@@ -7,7 +7,7 @@ const multer = require('multer');
 const upload = multer({storage: multer.memoryStorage()})
 
 router.post('/',middleware.authSellerMiddleware,upload.single('video'),foodController.createFood)
-router.get('/',middleware.foodGetMiddleware,foodController.getFood)
+router.get('/',middleware.authMiddleware,foodController.getFood)
 
 router.post('/like',middleware.authUserMiddleware,foodController.likeFood);
 router.post('/save',middleware.authUserMiddleware,foodController.saveFood);

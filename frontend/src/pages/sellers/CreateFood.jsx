@@ -34,6 +34,7 @@ const CreateFood = () => {
     fileData.append("video",base64Image)
     fileData.append("ingredients",data.ingredients)
     fileData.append("description",data.description)
+    fileData.append("price",data.price)
     try {
         const response = await axios.post("http://localhost:3000/api/food",fileData,
         {
@@ -47,7 +48,7 @@ const CreateFood = () => {
     } catch (error) {
         console.log(error)
         setIsLoading(false)
-        toast.error(error.data.message);
+        toast.error(error.message);
     }
   };
 
@@ -62,7 +63,7 @@ const CreateFood = () => {
         <div className="w-full bg-white bg-opacity-5 backdrop-filter backdrop-blur-xl border border-white border-opacity-10 rounded-3xl p-8 shadow-2xl transition-all duration-700 ease-in-out transform scale-100 animate-fade-in">
           <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-center text-black">Create Your Dish</h1>
           <p className="text-sm text-gray-400 mb-8 text-center">
-            Enter your ingredients and instructions, and we'll help you perfect it.
+            Enter your dish name,ingredients,video and instructions, and create your reel.
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -74,7 +75,7 @@ const CreateFood = () => {
                 type="text"
                 id="dishName"
                 {...register("dishName", { required: "Dish name is required" })}
-                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all duration-300"
+                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-1 focus:black/50 focus:border-transparent outline-none transition-all duration-300"
                 placeholder="e.g., Spicy Tomato Pasta"
               />
               {errors.dishName && <p className="text-red-400 text-sm mt-1">{errors.dishName.message}</p>}
@@ -87,7 +88,7 @@ const CreateFood = () => {
                 id="ingredients"
                 {...register("ingredients", { required: "Ingredients are required" })}
                 rows="4"
-                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all duration-300"
+                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-1 focus:black/50 focus:border-transparent outline-none transition-all duration-300"
                 placeholder="e.g., Pasta, Tomatoes, Garlic, Chili Flakes"
               ></textarea>
               {errors.ingredients && <p className="text-red-400 text-sm mt-1">this field is required </p>}
@@ -100,10 +101,26 @@ const CreateFood = () => {
                 id="instructions"
                 {...register("description", { required: "Instructions are required" })}
                 rows="6"
-                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all duration-300"
+                className="w-full p-3 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-1 focus:black/50 focus:border-transparent outline-none transition-all duration-300"
                 placeholder="e.g., Boil pasta. Sauté garlic and chili. Add tomatoes and simmer. Combine with pasta."
                 ></textarea>
               {errors.description && <p className="text-red-400 text-sm mt-1">this field is required</p>}
+            </div>
+             <div>
+              <label htmlFor="price" className="block text-sm font-medium text-black/80 mb-2">
+                Price
+              </label>
+              <div className="relative">
+                <span className="absolute text-xl left-2 top-[21%] text-black/75 mr-2">₹</span>
+                <input
+                type="number"
+                {...register("price", { required: "price is required" })}
+                className="w-full p-3 pl-6 bg-white bg-opacity-10 rounded-xl border border-white border-opacity-20 focus:ring-1 focus:black/50 focus:border-transparent outline-none transition-all duration-300"
+                placeholder="e.g., ₹249/-"
+                onWheel={e => e.target.blur()}
+              />
+              </div>
+              {errors.price && <p className="text-red-400 text-sm mt-1">{errors.dishName.message}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-black/80 mb-2">
@@ -134,34 +151,34 @@ const CreateFood = () => {
                     type="radio"
                     value="true"
                     {...register("isVegetarian")}
-                    className="form-radio text-green-300 bg-white bg-opacity-10 border border-white border-opacity-20 focus:ring-2 focus:ring-blue-400"
+                    className="form-radio text-green-700 bg-white bg-opacity-10 border border-white border-opacity-20 focus:ring-1 focus:black/50"
                   />
-                  <span className="text-black/80">Vegetarian</span>
+                  <span className="text-black/80 text-md flex gap-2 justify-center items-center">Veg </span>
                 </label>
                 <label className="flex items-center space-x-2 cursor-pointer">
                   <input
                     type="radio"
                     value="false"
                     {...register("isVegetarian")}
-                    className="form-radio text-red-400 bg-white bg-opacity-10 border border-white border-opacity-20 focus:ring-2 focus:ring-blue-400"
+                    className="form-radio text-red-500 bg-white bg-opacity-10 border border-white border-opacity-20 focus:ring-1 focus:black/50"
                   />
-                  <span className="text-black/80">Non-Vegetarian</span>
+                  <span className="text-black/80 text-md flex gap-2 justify-center items-center">Non-Veg</span>
                 </label>
               </div>
             </div>
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-3 bg-blue-400 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:bg-blue-400 hover:shadow-xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50"
+                className="w-full px-6 py-3 capatalize border-1 backdrop-blue-lg border-black/80 outline-none text-black/80 font-bold rounded-full shadow-lg transition-all duration-300 hover:bg-[#357ae8] hover:shadow-xl transform hover:-translate-y-0.5"
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center justify-center space-x-2">
                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="black" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span>Perfecting...</span>
+                    <span>Creating...</span>
                   </div>
                 ) : (
                   'Create Dish'

@@ -11,6 +11,7 @@ import { context } from "../context/AuthContext";
 import SellerProtectedRoute from "../utils/SellerProtectedRoute";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import UserProfile from "../pages/users/UserProfile";
+import Cart from "../pages/users/Cart";
 
 function AppRoutes() {
   const { loggedIn } = useContext(context);
@@ -29,6 +30,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <UserProfile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user/cart"
+        element={
+          <ProtectedRoute>
+            <Cart />
           </ProtectedRoute>
         }
       />

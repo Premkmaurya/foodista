@@ -95,7 +95,7 @@ body {
   display: inline-block;
   vertical-align: middle;
   background-color: transparent;
-  border-radius: 50%;
+  border-radius: 2%;
   height: 1.25em;
   width: 1.25em;
   border: 2px solid;
@@ -116,7 +116,7 @@ body {
   width: 0.5em;
   height: 0.5em;
   border-radius: 50%;
-  background-color: #101014;
+  background-color: white;
 }
 
 

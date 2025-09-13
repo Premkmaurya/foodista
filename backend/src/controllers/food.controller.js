@@ -5,7 +5,7 @@ const { uploadVideo } = require("../services/storage.service");
 const { v4: uuidv4 } = require("uuid");
 
 async function createFood(req, res) {
-  const { name, ingredients, description } = req.body;
+  const { name, ingredients, description,price } = req.body;
   const video = req.file;
   const seller = req.seller;
   const response = await uploadVideo(video.buffer, `${uuidv4()}`);
@@ -16,6 +16,7 @@ async function createFood(req, res) {
     description,
     video: response.url,
     seller: seller._id,
+    price
   });
 
   return res.status(200).json({
@@ -26,7 +27,7 @@ async function createFood(req, res) {
 
 async function getFood(req, res) {
   const foods = await foodModel.find({});
-  const foodGetter = req.foodGetter;
+  const foodGetter = req.authToken;
   res.status(200).json({
     message: "food items fetched successfully.",
     foods,

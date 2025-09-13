@@ -22,6 +22,10 @@ const foodSchema = new mongoose.Schema({
         ref:"seller",
         required:true
     },
+    price:{
+        type:Number,
+        required:true
+    },
     likeCount:{
         type:Number,
         default:0,
