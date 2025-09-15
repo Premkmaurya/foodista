@@ -11,11 +11,11 @@ function sellerProfile() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://foodista-s6nv.vercel.app/api/food-partner/${id}`,{withCredentials:true})
+    axios.get(`https://backend-3cpr.onrender.com/api/food-partner/${id}`,{withCredentials:true})
     .then((response)=>{
       setSeller(response.data.seller)
     })
-    axios.get("https://foodista-s6nv.vercel.app/api/food", { withCredentials: true })
+    axios.get("https://backend-3cpr.onrender.com/api/food", { withCredentials: true })
     .then((response)=>{
       setVideos(response.data.foods)
     })

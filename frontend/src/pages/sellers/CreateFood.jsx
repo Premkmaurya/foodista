@@ -36,7 +36,7 @@ const CreateFood = () => {
     fileData.append("description",data.description)
     fileData.append("price",data.price)
     try {
-        const response = await axios.post("https://foodista-s6nv.vercel.app/api/food",fileData,
+        const response = await axios.post("https://backend-3cpr.onrender.com/api/food",fileData,
         {
           withCredentials:true,
           headers: {

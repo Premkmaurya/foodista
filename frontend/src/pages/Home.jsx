@@ -19,7 +19,7 @@ function Home() {
   // Fetching videos
   useEffect(() => {
     axios
-      .get("https://foodista-s6nv.vercel.app/api/food", { withCredentials: true })
+      .get("https://backend-3cpr.onrender.com/api/food", { withCredentials: true })
       .then((response) => {
         setVideos(response.data.foods);
         setFoodGetter(response.data.foodGetter);
@@ -69,7 +69,7 @@ function Home() {
 
   const likeHandler = async (foodId) => {
     const response = await axios.post(
-      "https://foodista-s6nv.vercel.app/api/food/like",
+      "https://backend-3cpr.onrender.com/api/food/like",
       { foodId },
       {
         withCredentials: true,
@@ -78,7 +78,7 @@ function Home() {
   };
   const saveHandler = async (foodId) => {
     const response = await axios.post(
-      "https://foodista-s6nv.vercel.app/api/food/save",
+      "https://backend-3cpr.onrender.com/api/food/save",
       { foodId },
       {
         withCredentials: true,
@@ -88,7 +88,7 @@ function Home() {
   const cartHandler = async (foodId) => {
     try {
       const response = await axios.post(
-        "https://foodista-s6nv.vercel.app/api/food/cart",
+        "https://backend-3cpr.onrender.com/api/food/cart",
         { foodId },
         {
           withCredentials: true,

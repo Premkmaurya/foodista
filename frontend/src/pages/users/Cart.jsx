@@ -45,7 +45,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await axios.get("https://foodista-s6nv.vercel.app/api/food/cart", {
+        const response = await axios.get("https://backend-3cpr.onrender.com/api/food/cart", {
           withCredentials: true,
         });
         // Pass raw cartItems to reducer, flattening will be handled there

@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         const response = await axios.post(
-          "https://foodista-s6nv.vercel.app/api/auth/session/user",
+          "https://backend-3cpr.onrender.com/api/auth/session/user",
           {},
           { withCredentials: true }
         );

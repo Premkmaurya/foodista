@@ -19,7 +19,7 @@ function Login() {
   const submitHandler = async (data) => {
     try {
       const response = await axios.post(
-        "https://foodista-s6nv.vercel.app/api/auth/user/login",
+        "https://backend-3cpr.onrender.com/api/auth/user/login",
         data,
         { withCredentials: true }
       );

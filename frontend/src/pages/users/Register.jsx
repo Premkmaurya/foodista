@@ -37,7 +37,7 @@ function Register() {
     formData.append("profileImg", profile)
     try {
       const response = await axios.post(
-        "https://foodista-s6nv.vercel.app/api/auth/user/register",
+        "https://backend-3cpr.onrender.com/api/auth/user/register",
         formData,
         { withCredentials: true }
       );
