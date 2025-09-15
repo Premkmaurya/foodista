@@ -4,8 +4,10 @@ import { IoBookmarkOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { context } from "../context/AuthContext";
-import Nav from "../components/Nav";
+import { context } from "../context/auth/AuthContext";
+import Nav from "../components/navbar/Nav";
+
+
 
 function Home() {
   const navigate = useNavigate();
@@ -164,8 +166,8 @@ function Home() {
                   Order Now
                 </button>
               </div>
-              <Nav foodGetter={foodGetter} />
             </div>
+            <Nav id={video._id} />
           </div>
         ))}
       </div>

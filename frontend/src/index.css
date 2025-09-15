@@ -6,6 +6,14 @@ body {
 .container::-webkit-scrollbar {
   display: none;
 }
+@font-face {
+    font-family: font-v;
+    src: url(../font/Lausanne-300.woff2);
+}
+@font-face {
+    font-family: font-v-2;
+    src: url(../font/Lausanne-500.woff2);
+}
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .container {
@@ -122,4 +130,29 @@ body {
 
 video::-internal-media-controls-overlay-cast-button {
   display: none;
+}
+.moveLink{
+    opacity: 0;
+    transition: all ease 0.2s;
+}
+
+.link:hover .moveLink{
+    opacity: 1;
+    transform: translateY(100%);
+}
+
+.moveX{
+    animation-name: moveAnimation;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes moveAnimation{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
 }

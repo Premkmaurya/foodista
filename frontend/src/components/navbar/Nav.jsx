@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-function Nav({foodGetter}) {
-  const navigate = useNavigate();
+function Footer({id}) {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState("home");
   return (
     <nav className="fixed bottom-0 inset-x-0 bg-black/50 backdrop-blur-xl border-t border-gray-700 py-3 px-4 flex justify-around items-center">
       <button
-        onClick={() => {
-          navigate("/");
-          setActiveTab("home")}}
+        onClick={() => setActiveTab("home")}
         className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
           activeTab === "home" ? "text-white" : "text-gray-500"
         }`}
@@ -21,10 +19,8 @@ function Nav({foodGetter}) {
       </button>
       <button
         onClick={() => {
-          foodGetter.address == undefined
-            ? navigate(`/user/profile/${foodGetter._id}`)
-            : navigate(`/seller/profile/${foodGetter._id}`);
-          setActiveTab("profile");
+          navigate(`/user/profile/${id}`)
+          setActiveTab("profile")
         }}
         className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
           activeTab === "profile" ? "text-white" : "text-gray-500"
@@ -39,4 +35,4 @@ function Nav({foodGetter}) {
   );
 }
 
-export default Nav;
+export default Footer;

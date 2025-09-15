@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {toast} from "react-toastify";
-import { context } from "../../context/AuthContext"
+import { context } from "../../context/auth/AuthContext"
 
 function Login() {
   const {setLoggedIn} = useContext(context)

@@ -7,7 +7,7 @@ import SellerLogin from "../pages/sellers/SellerLogin";
 import SellerRegister from "../pages/sellers/SellerRegister";
 import SellerProfile from "../pages/sellers/SellerProfile";
 import CreateFood from "../pages/sellers/CreateFood";
-import { context } from "../context/AuthContext";
+import { context } from "../context/auth/AuthContext";
 import SellerProtectedRoute from "../utils/SellerProtectedRoute";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import UserProfile from "../pages/users/UserProfile";
