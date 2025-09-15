@@ -18,7 +18,7 @@ function SellerLogin() {
   const submitHandler = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/seller/login",
+        "https://foodista-s6nv.vercel.app/api/auth/seller/login",
         data,
         { withCredentials: true }
       );

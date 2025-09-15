@@ -18,7 +18,7 @@ function UserProfile() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/user/${id}`, { withCredentials: true })
+      .get(`https://foodista-s6nv.vercel.app/api/user/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
       });
