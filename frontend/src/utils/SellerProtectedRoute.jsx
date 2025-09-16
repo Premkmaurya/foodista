@@ -9,7 +9,7 @@ const SellerProtectedRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         const response = await axios.post(
-          "https://backend-3cpr.onrender.com/api/auth/session/seller",
+          "https://backend-9yno.onrender.com/api/auth/session/seller",
           {},
           { withCredentials: true }
         );

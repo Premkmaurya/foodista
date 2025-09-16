@@ -21,13 +21,13 @@ router.post("/user", middleware.authMiddleware, (req, res) => {
   const user = req.authToken;
   if (user) {
     return res.status(200).json({
-      message: "seller verified successfully."
+      message: "user verified successfully."
     });
   }
   return res.status(400).json({
-    message: "register as a seller."
+    message: "register as a user."
   });
 });
 
 
-module.exports = router
+module.exports = router;

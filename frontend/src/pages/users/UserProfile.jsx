@@ -18,7 +18,7 @@ function UserProfile() {
 
   useEffect(() => {
     axios
-      .get(`https://backend-3cpr.onrender.com/api/user/${id}`, { withCredentials: true })
+      .get(`https://backend-9yno.onrender.com/api/user/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
       });

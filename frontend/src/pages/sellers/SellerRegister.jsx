@@ -39,7 +39,7 @@ function SellerRegister() {
     formData.append("profileImg", profile);
     try {
       const response = await axios.post(
-        "https://backend-3cpr.onrender.com/api/auth/seller/register",
+        "https://backend-9yno.onrender.com/api/auth/seller/register",
         formData,
         { withCredentials: true }
       );

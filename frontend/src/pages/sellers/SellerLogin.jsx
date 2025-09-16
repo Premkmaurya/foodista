@@ -18,7 +18,7 @@ function SellerLogin() {
   const submitHandler = async (data) => {
     try {
       const response = await axios.post(
-        "https://backend-3cpr.onrender.com/api/auth/seller/login",
+        "https://backend-9yno.onrender.com/api/auth/seller/login",
         data,
         { withCredentials: true }
       );

@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         const response = await axios.post(
-          "https://backend-3cpr.onrender.com/api/auth/session/user",
+          "https://backend-9yno.onrender.com/api/auth/session/user",
           {},
           { withCredentials: true }
         );
