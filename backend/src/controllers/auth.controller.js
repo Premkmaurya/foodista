@@ -32,7 +32,7 @@ async function userRegister(req, res) {
   res.cookie("token", token, {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
-    sameSite: "None",
+    sameSite: "none",
   });
 
   return res.status(201).json({
@@ -65,7 +65,7 @@ async function userLogin(req, res) {
   res.cookie("token", token, {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
-    sameSite: "None",
+    sameSite: "none",
   });
 
   return res.status(201).json({
@@ -111,7 +111,7 @@ async function sellerRegister(req, res) {
   res.cookie("token", token, {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
-    sameSite: "None",
+    sameSite: "none",
   });
 
   return res.status(201).json({
