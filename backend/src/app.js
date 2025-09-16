@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // development ke liye
-      "https://foodista-nu.vercel.app", // production ke liye
+      "https://foodista-ruby.vercel.app", // production ke liye
     ],
     credentials: true,
   })
