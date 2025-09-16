@@ -12,10 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // development ke liye
-      "https://foodista-ruby.vercel.app", // production ke liye
-    ],
+    origin: "https://foodista-ruby.vercel.app", 
     credentials: true,
   })
 );
