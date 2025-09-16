@@ -143,6 +143,9 @@ async function sellerLogin(req, res) {
 
   res.cookie("token", token, {
     expires: new Date("2038-12-31"),
+    secure: true, // Always true for production/HTTPS
+    sameSite: "none", // For cross-site cookie
+    httpOnly: true, // Prevent JS access
   });
 
   return res.status(201).json({
