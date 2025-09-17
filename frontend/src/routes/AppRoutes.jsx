@@ -17,14 +17,7 @@ function AppRoutes() {
   const { loggedIn } = useContext(context);
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/" element={<Home />} />
       <Route
         path="/user/profile/:id"
         element={

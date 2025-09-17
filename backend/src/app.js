@@ -8,14 +8,14 @@ const foodPartnerRoutes = require("./routes/food-partner.routes");
 const cors = require("cors");
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     origin: "https://foodista-ruby.vercel.app", 
     credentials: true,
   })
 );
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/food", foodRoutes);
 app.use("/api/auth", authRoutes);
