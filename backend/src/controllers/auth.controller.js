@@ -33,6 +33,7 @@ async function userRegister(req, res) {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
     sameSite: "none",
+    httpOnly: true, 
   });
 
   return res.status(201).json({
@@ -66,6 +67,7 @@ async function userLogin(req, res) {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
     sameSite: "none",
+    httpOnly: true, 
   });
 
   return res.status(201).json({
@@ -112,6 +114,7 @@ async function sellerRegister(req, res) {
     expires: new Date("2038-12-31"),
     secure: true, // Render pe hamesha true rakhna
     sameSite: "none",
+    httpOnly: true, // Prevent JS access
   });
 
   return res.status(201).json({

@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://foodista-ruby.vercel.app", 
+    origin: ["http://localhost:5173", "https://foodista-ruby.vercel.app"],
     credentials: true,
   })
 );
