@@ -18,7 +18,7 @@ function Home() {
   // Fetching videos
   useEffect(() => {
     axios
-      .get("https://backend-9yno.onrender.com/api/food", {
+      .get("https://backend-3cpr.onrender.com/api/food", {
         withCredentials: true,
       })
       .then((response) => {
@@ -66,7 +66,7 @@ function Home() {
 
   const likeHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-9yno.onrender.com/api/food/like",
+      "https://backend-3cpr.onrender.com/api/food/like",
       { foodId },
       {
         withCredentials: true,
@@ -75,7 +75,7 @@ function Home() {
   };
   const saveHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-9yno.onrender.com/api/food/save",
+      "https://backend-3cpr.onrender.com/api/food/save",
       { foodId },
       {
         withCredentials: true,
@@ -85,7 +85,7 @@ function Home() {
   const cartHandler = async (foodId) => {
     try {
       const response = await axios.post(
-        "https://backend-9yno.onrender.com/api/food/cart",
+        "https://backend-3cpr.onrender.com/api/food/cart",
         { foodId },
         {
           withCredentials: true,
@@ -139,7 +139,7 @@ function Home() {
                   <p>{video.cartCount != 0 && video.cartCount}</p>
                 </div>
               </div>
-              <div className="absolute inset-x-0 bottom-0 pb-[5.5rem] bg-gradient-to-t from-black via-black/60 to-transparent p-4 text-white">
+              <div className="absolute inset-x-0 bottom-0 pb-[8rem] sm:pb-[5.5rem] bg-gradient-to-t from-black via-black/60 to-transparent p-4 text-white">
                 {/* Profile and Details */}
                 <div
                   onClick={() => navigate(`/seller/profile/${video.seller}`)}
