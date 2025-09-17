@@ -18,7 +18,7 @@ function Home() {
   // Fetching videos
   useEffect(() => {
     axios
-      .get("https://backend-3cpr.onrender.com/api/food", {
+      .get("https://backend-9yno.onrender.com/api/food", {
         withCredentials: true,
       })
       .then((response) => {
@@ -66,7 +66,7 @@ function Home() {
 
   const likeHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-3cpr.onrender.com/api/food/like",
+      "https://backend-9yno.onrender.com/api/food/like",
       { foodId },
       {
         withCredentials: true,
@@ -75,7 +75,7 @@ function Home() {
   };
   const saveHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-3cpr.onrender.com/api/food/save",
+      "https://backend-9yno.onrender.com/api/food/save",
       { foodId },
       {
         withCredentials: true,
@@ -85,7 +85,7 @@ function Home() {
   const cartHandler = async (foodId) => {
     try {
       const response = await axios.post(
-        "https://backend-3cpr.onrender.com/api/food/cart",
+        "https://backend-9yno.onrender.com/api/food/cart",
         { foodId },
         {
           withCredentials: true,
