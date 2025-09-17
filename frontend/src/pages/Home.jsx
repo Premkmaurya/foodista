@@ -98,12 +98,12 @@ function Home() {
 
   return (
     <>
-      <div className="container h-screen overflow-y-scroll snap-y snap-mandatory bg-black">
+      <div className="container h-[100vh] overflow-y-scroll snap-y snap-mandatory bg-black">
         {videos.map((video, idx) => (
           <div
             key={idx}
             ref={(el) => (containerRefs.current[idx] = el)}
-            className="relative h-screen w-full snap-start flex items-center justify-center bg-black"
+            className="relative h-[100vh] w-full snap-start flex items-center justify-center bg-black"
           >
             <div className="relative flex flex-col mb-1 items-center justify-end w-full h-full rounded-none overflow-hidden shadow-lg shadow-white bg-black md:max-w-[370px] md:rounded-2xl">
               <video
