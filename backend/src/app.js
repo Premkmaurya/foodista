@@ -6,6 +6,7 @@ const foodRoutes = require("./routes/food.routes");
 const sessionRoutes = require("./routes/session.routes");
 const foodPartnerRoutes = require("./routes/food-partner.routes");
 const cors = require("cors");
+const path = require('path')
 const app = express();
 
 app.use(
