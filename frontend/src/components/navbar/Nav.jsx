@@ -5,11 +5,13 @@ function Footer({id}) {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState("home");
   return (
-    <nav className="fixed bottom-0 inset-x-0 bg-black/50 backdrop-blur-xl border-t border-gray-700 py-3 px-4 flex justify-around items-center">
+    <nav className="fixed z-50 bottom-0 inset-x-0 bg-[#EF7722] backdrop-blur-xl border-t border-gray-700 py-3 px-4 flex justify-around items-center">
       <button
-        onClick={() => setActiveTab("home")}
+        onClick={() => {
+          navigate('/')
+          setActiveTab("home")}}
         className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
-          activeTab === "home" ? "text-white" : "text-gray-500"
+          activeTab === "home" ? "text-white" : "text-white/50"
         }`}
       >
         <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24">
@@ -23,7 +25,7 @@ function Footer({id}) {
           setActiveTab("profile")
         }}
         className={`flex-1 flex flex-col items-center text-sm font-semibold transition-colors ${
-          activeTab === "profile" ? "text-white" : "text-gray-500"
+          activeTab === "profile" ? "text-white" : "text-white/50"
         }`}
       >
         <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24">

@@ -8,6 +8,7 @@ import { FaRegUser } from "react-icons/fa";
 import FullScreenNav from "../../components/navbar/FullScreenNav";
 import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { NavbarContext } from "../../context/nav/NavContext";
+import Nav from "../../components/navbar/Nav"
 
 function UserProfile() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ function UserProfile() {
   const { setOpen } = useContext(NavbarContext);
   const [user, setUser] = useState({});
   const [videos, setVideos] = useState([]);
+
 
   useEffect(() => {
     axios
@@ -132,6 +134,7 @@ function UserProfile() {
             </div>
           </div>
         </div>
+        <Nav />
       </div>
       <div className="absolute top-0 left-0 z-50">
         <FullScreenNav size={32} />

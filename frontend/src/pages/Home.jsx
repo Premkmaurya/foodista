@@ -6,8 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context } from "../context/auth/AuthContext";
 import Nav from "../components/navbar/Nav";
-
-
+import { FaRegUser } from "react-icons/fa";
 
 function Home() {
   const navigate = useNavigate();
@@ -19,7 +18,9 @@ function Home() {
   // Fetching videos
   useEffect(() => {
     axios
-      .get("https://backend-9yno.onrender.com/api/food", { withCredentials: true })
+      .get("https://backend-9yno.onrender.com/api/food", {
+        withCredentials: true,
+      })
       .then((response) => {
         setVideos(response.data.foods);
         setFoodGetter(response.data.foodGetter);
@@ -32,14 +33,12 @@ function Home() {
   // Intersection Observer logic
   useEffect(() => {
     if (!containerRefs.current) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const videoEl = entry.target.querySelector("video");
-
           if (videoEl) {
-            if (entry.isIntersecting && entry.intersectionRatio === 1) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
               // Reset to beginning and play
               videoEl.currentTime = 0;
               videoEl.play().catch((err) => {
@@ -52,14 +51,12 @@ function Home() {
         });
       },
       {
-        threshold: 1.0,
+        threshold: [0.75,0.8,0.9,1],
       }
     );
-
     containerRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
-
     return () => {
       containerRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
@@ -148,11 +145,16 @@ function Home() {
                   onClick={() => navigate(`/seller/profile/${video.seller}`)}
                   className="flex w-fit items-start space-x-4 mb-2"
                 >
-                  <img
-                    src={video.profileImg}
-                    alt="Profile"
-                    className="w-12 h-12 rounded-full border-2 border-white"
-                  />
+                  {video.profileImg ? (
+                    <img
+                      src={video.profileImg}
+                      alt="Profile"
+                      className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                    />
+                  ) : (
+                    <FaRegUser className="w-12 h-12 rounded-full p-1 bg-white text-gray-500" />
+                  )}
+
                   <div>
                     <h3 className="font-bold text-lg">{video.name}</h3>
                   </div>

@@ -2,7 +2,7 @@ import React, { useRef, useEffect,useState } from "react";
 import "../../index.css";
 import axios from "axios"
 import {useParams} from "react-router-dom"
-
+import Nav from "../../components/navbar/Nav"
 
 function sellerProfile() {
   const {id} = useParams();
@@ -117,6 +117,7 @@ function sellerProfile() {
 </div>
 
       </div>
+      <Nav />
     </div>
   );
 }
