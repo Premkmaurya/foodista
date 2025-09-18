@@ -5,7 +5,7 @@ function Footer({id}) {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState("home");
   return (
-    <nav className="fixed z-50 bottom-9 sm:bottom-0 inset-x-0 bg-[#EF7722]/40 backdrop-blur-xl py-3 px-4 flex justify-around items-center">
+    <nav className="fixed z-50 pb-9 bottom-0 sm:bottom-0 inset-x-0 bg-[#EF7722] backdrop-blur-xl py-3 px-4 flex justify-around items-center">
       <button
         onClick={() => {
           navigate('/')
