@@ -4,11 +4,11 @@ import { IoBookmarkOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { context } from "../context/auth/AuthContext";
-import Nav from "../components/navbar/Nav";
+import { context } from "../../context/auth/AuthContext";
+import Nav from "../../components/navbar/Nav";
 import { FaRegUser } from "react-icons/fa";
 
-function Home() {
+function Reels() {
   const navigate = useNavigate();
   const { loggedIn } = useContext(context);
   const [videos, setVideos] = useState([]);
@@ -177,4 +177,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Reels;

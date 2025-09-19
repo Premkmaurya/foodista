@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "../pages/Home";
+import Home from "../pages/common/Home";
+import Reels from "../pages/common/Reels";
 import Login from "../pages/users/Login";
 import Register from "../pages/users/Register";
 import SellerLogin from "../pages/sellers/SellerLogin";
@@ -18,6 +19,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/reels" element={<Reels />} />
       <Route
         path="/user/profile/:id"
         element={
