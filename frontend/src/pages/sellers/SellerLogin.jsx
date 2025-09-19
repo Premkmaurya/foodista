@@ -66,7 +66,7 @@ function SellerLogin() {
                 <input
                   type="email"
                   {...register("email", { required: true })}
-                  className="w-full mt-1 text-black rounded-lg outline-none border-1 border-gray-400 px-2 py-2"
+                  className="w-full font-sans mt-1 text-black rounded-lg outline-none border-1 border-gray-400 px-2 py-2"
                 />
                 {errors.email && (
                   <span className="text-red-700 leading-0 text-xs">
@@ -79,7 +79,7 @@ function SellerLogin() {
                 <input
                   type="password"
                   {...register("password", { required: true })}
-                  className="w-full mt-1 text-black rounded-lg outline-none border-1 border-gray-400 px-2 py-2"
+                  className="w-full font-sans mt-1 text-black rounded-lg outline-none border-1 border-gray-400 px-2 py-2"
                 />
                 {errors.password && (
                   <span className="text-red-700 leading-0 text-xs">

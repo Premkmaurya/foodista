@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import {Link,useNavigate} from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -26,21 +28,18 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white font-sans flex flex-col items-center">
+    <div className="min-h-screen text-white flex flex-col items-center">
       {/* Header */}
       <header className="w-full bg-[#EF7722] flex justify-between items-center p-6 lg:px-12">
         <div className="flex items-center space-x-2">
-          <span className="text-3xl font-bold">🍔 Foodie</span>
+          <span className="text-3xl font-bold">Foodista</span>
         </div>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-semibold">
-          <a href="#" className="hover:text-gray-300">
+          <Link to="/seller/register" className="font-light cursor-pointer hover:underline">
             Partner with us
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            Get the Home
-          </a>
-          <button className="bg-white text-indigo-900 py-2 px-6 rounded-full font-bold transition-transform transform hover:scale-105">
-            Sign In
+          </Link>
+          <button onClick={()=>{navigate('/user/login')}} className="bg-white cursor-pointer text-black py-2 px-6 rounded-full transition-transform transform hover:scale-105">
+            Log In
           </button>
         </nav>
       </header>
@@ -48,24 +47,22 @@ const Home = () => {
       {/* Hero Section */}
       <main className="w-full h-full text-[#b32911] flex-grow flex flex-col items-center justify-center p-6 lg:p-12 text-center relative overflow-hidden">
         {/* Background images for contrast */}
-          <div className="absolute top-0 left-0 w-full h-full z-0">
-            <div className="w-full h-full">
-              <img
-                className="w-[30vw] h-full object-cover"
-                src="/image/food-1.png"
-                alt=""
-              />
-            </div>
+        <div className="absolute top-0 left-0 w-full h-full z-0">
+          <div className="absolute top-0 -left-15 w-[40vw] h-full">
+            <img
+              className="w-full h-full object-cover"
+              src="/image/food-1.png"
+              alt=""
+            />
           </div>
-          <div className="absolute top-0 right-0 w-full h-full z-0">
-            <div className="w-full h-full">
-              <img
-                className="w-[30vw] h-full object-cover"
-                src="/image/food-2.png"
-                alt=""
-              />
-            </div>
+          <div className="absolute top-0 right-0 w-[40vw] h-full">
+            <img
+              className="w-full h-full object-cover"
+              src="/image/food-2.png"
+              alt=""
+            />
           </div>
+        </div>
         <div className="relative z-10 w-full flex flex-col items-center">
           <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight mt-12 mb-6">
             Order food & groceries. Discover best restaurants.

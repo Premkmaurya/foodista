@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Beach Stone';
+  src: url('/font/beach-stone.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: Beach Stone;
+}
+@layer base {
+  input {
+    @apply font-sans;
+  }
 }
 .container::-webkit-scrollbar {
   display: none;
 }
-@font-face {
-    font-family: font-v;
-    src: url(../font/Lausanne-300.woff2);
-}
-@font-face {
-    font-family: font-v-2;
-    src: url(../font/Lausanne-500.woff2);
-}
+
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .container {
