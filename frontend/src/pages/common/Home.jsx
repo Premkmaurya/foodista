@@ -2,6 +2,7 @@ import Hero from "../../components/home/Hero";
 import Feautre from "../../components/home/Feautre";
 import Header from "../../components/home/Header";
 import VideoSection from "../../components/home/VideoSection";
+import Footer from "../../components/common/Footer";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Hero />
       <Feautre />
       <VideoSection />
+      <Footer />
     </div>
   );
 };

@@ -29,14 +29,14 @@ function Hero() {
     <main className="w-full h-full text-[#b32911] flex-grow flex flex-col items-center justify-center p-3 lg:p-12 text-center relative overflow-hidden">
       {/* Background images for contrast */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <div className="absolute top-0 -left-15 w-[30vw] h-full">
+        <div className="absolute top-0 -left-15 w-[55vw] sm:w-[30vw] h-[30vh] sm:h-full">
           <img
             className="first w-full h-full object-cover"
             src="/image/food-1.png"
             alt=""
           />
         </div>
-        <div className="absolute top-0 -right-2 w-[30vw] h-full">
+        <div className="absolute top-0 right-1 sm:-right-2 w-[30vw] h-full">
           <img
             className="second w-full h-full object-cover"
             src="/image/food-2.png"
