@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { gsap } from "gsap";
 import { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
 function Hero() {
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const containerRef = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
     gsap.from(".first", {
@@ -25,20 +29,47 @@ function Hero() {
     });
   }, []);
 
+  useGSAP(() => {
+    gsap.to(".first", {
+      rotate: -40,
+      transform:"translate(-10rem)",
+      duration: 2,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: "first",
+        start: "top top",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+    gsap.to(".second", {
+      rotate: 40,
+      transform:"translate(10rem)",
+      duration: 2,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: "second",
+        start: "top top",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+  });
+
   return (
     <main className="w-full h-full text-[#b32911] flex-grow flex flex-col items-center justify-center p-3 lg:p-12 text-center relative overflow-hidden">
       {/* Background images for contrast */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute bottom-20 sm:top-0 -left-15 w-[40vw] sm:w-[30vw] h-[30vh] sm:h-full">
           <img
-            className="first w-full h-full object-cover"
+            className="first image w-full h-full object-cover"
             src="/image/food-1.png"
             alt=""
           />
         </div>
         <div className="absolute bottom-20 sm:top-0 right-0 sm:-right-2 w-[35vw] sm:w-[30vw] h-[30vh] sm:h-full">
           <img
-            className="second w-full h-full object-cover"
+            className="second image w-full h-full object-cover"
             src="/image/food-2.png"
             alt=""
           />

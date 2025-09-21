@@ -1,6 +1,7 @@
-import React from "react";
-
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import React, { useRef } from "react";
 
 const featuredSections = [
   {
@@ -23,14 +24,36 @@ const featuredSections = [
   },
 ];
 
-
 function Feautre() {
+  const featureSectionRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    const elements = gsap.utils.toArray(".feature-item");
+
+    gsap.from(elements, {
+      opacity: 0,
+      y: 40,
+      duration: 2,
+      stagger: 1,
+      scrollTrigger: {
+        trigger: featureSectionRef.current,
+        start: "top 60%",
+        end: "center bottom",
+        scrub: true,
+      },
+    });
+  });
+
   return (
-    <section className="w-full max-w-6xl p-6 lg:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+    <section
+      ref={featureSectionRef}
+      className="w-full max-w-6xl p-6 lg:p-12 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10"
+    >
       {featuredSections.map((section, index) => (
         <div
           key={index}
-          className="bg-[#f5f5f5] border-1 border-grey-300 shadow-xl shadow-black/40 rounded-2xl p-6 flex flex-col items-start space-y-4 transition-transform transform hover:scale-105 duration-300"
+          className="feature-item bg-[#f5f5f5] border-1 border-grey-300 shadow-xl shadow-black/40 rounded-2xl p-6 flex flex-col items-start space-y-4 transition-transform transform hover:scale-105 duration-300"
         >
           <h2 className="text-xl text-[#4e342e] font-bold uppercase tracking-wide">
             {section.title}

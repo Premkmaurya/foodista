@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { NavbarContext } from "../../context/nav/NavContext";
 
+
 function FullScreenNav() {
   const crossIconRef = useRef(null);
   const stairDivRef = useRef(null);
