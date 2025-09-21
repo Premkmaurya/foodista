@@ -11,7 +11,7 @@ function VideoSection() {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/food", {
+      .get("https://backend-9yno.onrender.com/api/food", {
         withCredentials: true,
       })
       .then((response) => {
