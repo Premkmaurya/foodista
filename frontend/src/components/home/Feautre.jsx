@@ -7,19 +7,19 @@ const featuredSections = [
     title: "GROCERY DELIVERY",
     subtitle: "FROM SUPERMARKETS",
     discount: "UPTO 70% OFF",
-    image: "/public/image/groceries.png",
+    image: "/image/groceries.png",
   },
   {
     title: "RESTAURANT OUTING",
     subtitle: "EAT OUT & SAVE MORE",
     discount: "UPTO 50% OFF",
-    image: "/public/image/restaurant.png",
+    image: "/image/restaurant.png",
   },
   {
     title: "RESTAURANT OUTING",
     subtitle: "EAT OUT & SAVE MORE",
     discount: "UPTO 50% OFF",
-    image: "/public/image/restaurant.png",
+    image: "/image/restaurant.png",
   },
 ];
 

@@ -11,7 +11,7 @@ function VideoSection() {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     axios
-      .get("https://backend-9yno.onrender.com/api/food", {
+      .get("http://localhost:3000/api/food", {
         withCredentials: true,
       })
       .then((response) => {
@@ -65,10 +65,10 @@ function VideoSection() {
                 return (
                   <SwiperSlide
                     key={video._id}
-                    className="w-[10vw] mr-5 flex-shrink-0 cursor-pointer h-full rounded-lg overflow-hidden"
+                    className="mr-5 cursor-pointer h-full rounded-lg overflow-hidden"
                   >
                     <video
-                      className="w-full h-full object-cover"
+                      className="w-full h-[70%] sm:h-full rounded-lg object-cover"
                       src={video.video}
                       muted
                       playsInline

@@ -1,42 +1,42 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { gsap } from "gsap";
-
+import { useRef } from "react";
 
 function Hero() {
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const containerRef = useRef(null);
 
-  useEffect(()=>{
-    gsap.from(".first",{
-        opacity:0,
-        rotate:-30,
-        duration:2,
-        delay:0.8,
-        ease:"power3.out",
-    })
-    gsap.from(".second",{
-        opacity:0,
-        rotate:-30,
-        duration:2,
-        delay:0.8,
-        ease:"power3.out",
-    })
-  },[])
-
+  useEffect(() => {
+    gsap.from(".first", {
+      opacity: 0,
+      rotate: -30,
+      duration: 2,
+      delay: 0.8,
+      ease: "power3.out",
+    });
+    gsap.from(".second", {
+      opacity: 0,
+      rotate: -30,
+      duration: 2,
+      delay: 0.8,
+      ease: "power3.out",
+    });
+  }, []);
 
   return (
     <main className="w-full h-full text-[#b32911] flex-grow flex flex-col items-center justify-center p-3 lg:p-12 text-center relative overflow-hidden">
       {/* Background images for contrast */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <div className="absolute top-0 -left-15 w-[55vw] sm:w-[30vw] h-[30vh] sm:h-full">
+        <div className="absolute bottom-20 sm:top-0 -left-15 w-[40vw] sm:w-[30vw] h-[30vh] sm:h-full">
           <img
             className="first w-full h-full object-cover"
             src="/image/food-1.png"
             alt=""
           />
         </div>
-        <div className="absolute top-0 right-1 sm:-right-2 w-[30vw] h-full">
+        <div className="absolute bottom-20 sm:top-0 right-0 sm:-right-2 w-[35vw] sm:w-[30vw] h-[30vh] sm:h-full">
           <img
             className="second w-full h-full object-cover"
             src="/image/food-2.png"
@@ -45,9 +45,9 @@ function Hero() {
         </div>
       </div>
       <div className="relative z-10 w-full flex flex-col items-center">
-        <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight mt-12 mb-6">
-          Order food & groceries. Discover best restaurants.
-        </h1>
+        <div className="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight mt-12 mb-6">
+          <h1>Order food & groceries. Discover best restaurants near you.</h1>
+        </div>
         <p className="text-lg lg:text-xl font-medium mb-12">
           Delicious meals delivered to your doorstep.
         </p>
