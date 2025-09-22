@@ -134,8 +134,8 @@ function UserProfile() {
             </div>
           </div>
         </div>
-        <Nav />
       </div>
+        <Nav />
       <div className="absolute top-0 left-0 z-50">
         <FullScreenNav size={32} />
       </div>

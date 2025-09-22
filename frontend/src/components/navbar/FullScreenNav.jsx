@@ -64,16 +64,16 @@ function FullScreenNav() {
         className="hidden h-screen w-screen fixed z-50 top-0"
       >
         <div className="h-full w-full flex">
-          <div className="stair_2 h-full w-1/5 bg-black"></div>
-          <div className="stair_2 h-full w-1/5 bg-black"></div>
-          <div className="stair_2 h-full w-1/5 bg-black"></div>
-          <div className="stair_2 h-full w-1/5 bg-black"></div>
-          <div className="stair_2 h-full w-1/5 bg-black"></div>
+          <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
+          <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
+          <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
+          <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
+          <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
         </div>
       </div>
       <div
         ref={fullNavRef}
-        className="hidden h-screen w-screen absolute z-70 text-white bg-black"
+        className="hidden h-screen w-screen absolute z-70 text-white bg-[#EF7722]"
       >
         <div className="flex w-full justify-between px-4 items-center">
           <div className="w-[7rem]">
