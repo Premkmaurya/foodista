@@ -3,7 +3,10 @@ import { RxCross1 } from "react-icons/rx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { NavbarContext } from "../../context/nav/NavContext";
-
+import { FaInstagram } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function FullScreenNav() {
   const crossIconRef = useRef(null);
@@ -29,7 +32,6 @@ function FullScreenNav() {
         },
       })
       .to(fullNavRef.current, {
-        opacity: 1,
         display: "block",
       })
       .from(".link", {
@@ -61,7 +63,7 @@ function FullScreenNav() {
     <>
       <div
         ref={stairDivRef}
-        className="hidden h-screen w-screen fixed z-50 top-0"
+        className="hidden h-screen w-screen fixed z-10 top-0"
       >
         <div className="h-full w-full flex">
           <div className="stair_2 h-full w-1/5 bg-[#EF7722]"></div>
@@ -73,21 +75,11 @@ function FullScreenNav() {
       </div>
       <div
         ref={fullNavRef}
-        className="hidden h-screen w-screen absolute z-70 text-white bg-[#EF7722]"
+        className="hidden h-[100vh] w-screen absolute top-0 left-0 z-50 text-white bg-[#EF7722]"
       >
-        <div className="flex w-full justify-between px-4 items-center">
-          <div className="w-[7rem]">
-            <svg
-              className=" w-full"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 103 44"
-            >
-              <path
-                fill="white"
-                fillRule="evenodd"
-                d="M35.1441047,8.4486911 L58.6905011,8.4486911 L58.6905011,-1.3094819e-14 L35.1441047,-1.3094819e-14 L35.1441047,8.4486911 Z M20.0019577,0.000230366492 L8.83414254,25.3433089 L18.4876971,25.3433089 L29.5733875,0.000230366492 L20.0019577,0.000230366492 Z M72.5255345,0.000691099476 L72.5255345,8.44846073 L94.3991559,8.44846073 L94.3991559,16.8932356 L72.5275991,16.8932356 L72.5275991,19.5237906 L72.5255345,19.5237906 L72.5255345,43.9274346 L102.80937,43.9274346 L102.80937,35.4798953 L80.9357483,35.4798953 L80.9357483,25.3437696 L94.3996147,25.3428482 L94.3996147,16.8953089 L102.80937,16.8953089 L102.80937,0.000691099476 L72.5255345,0.000691099476 Z M-1.30398043e-14,43.9278953 L8.78642762,43.9278953 L8.78642762,0.0057591623 L-1.30398043e-14,0.0057591623 L-1.30398043e-14,43.9278953 Z M58.6849955,8.4486911 L43.1186904,43.9274346 L52.3166592,43.9274346 L67.9877996,8.4486911 L58.6849955,8.4486911 Z M18.4688864,25.3437696 L26.7045278,43.9278953 L36.2761871,43.9278953 L28.1676325,25.3375497 L18.4688864,25.3437696 Z"
-              ></path>
-            </svg>
+        <div className="link flex w-full justify-between h-[4rem] px-4 py-6 items-center">
+          <div className="w-[7rem] h-full">
+            <Link to="/" className="text-4xl font-bold">foodista</Link>
           </div>
           <RxCross1
             onClick={() => {
@@ -96,205 +88,42 @@ function FullScreenNav() {
             }}
             ref={crossIconRef}
             className="w-20 cursor-pointer"
-            size={85}
+            size={30}
             color={"white"}
           />
         </div>
-        <div className="py-25">
-          <div className="link relative overflow-hidden border-y-1 border-white/30">
-            <h1 className="font-[font-v-2] text-center leading-[12.4vw] sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-              home
-            </h1>
-            <div className="moveLink absolute -top-[100%] h-[4.6rem] flex gap-[18rem] bg-[#D3FD50]">
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
+        <div className="relative w-full h-[92%]">
+          <div>
+            <button className="bg-white absolute top-5 right-6 cursor-pointer text-black py-2 px-6 rounded-full transition-transform transform hover:scale-105">
+              log in
+            </button>
+          </div>
+          <div className="link py-[14rem] flex flex-col justify-center">
+            <div className="border-t-1 flex justify-center pt-2 items-center border-white">
+              <Link to="/" className="text-3xl">home</Link>
+            </div>
+            <div className="border-t-1 flex justify-center pt-2 items-center border-white">
+              <Link to="/reels" className="text-3xl">reels</Link>
+            </div>
+            <div className="border-t-1 flex justify-center pt-2 items-center border-white">
+              <Link to="/cart" className="text-3xl">cart</Link>
+            </div>
+            <div className="border-t-1 flex justify-center pt-2 items-center border-white">
+              <Link to="/about" className="text-3xl">about</Link>
+            </div>
+            <div className="border-y-1 flex justify-center pt-2 items-center border-white">
+              <Link to="/contact-us" className="text-3xl">contact us</Link>
             </div>
           </div>
-          <div className="link relative overflow-hidden border-y-1 border-white/30">
-            <h1 className="font-[font-v-2] leading-[12.4vw] text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-              about
-            </h1>
-            <div className="moveLink absolute -top-[100%] h-[4.6rem] flex gap-[18rem] bg-[#D3FD50]">
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
+          <div className="link absolute bottom-3 right-3">
+            <div className="flex justify-end items-center mb-3">
+              <FaInstagram onClick={()=>window.open("https://www.instagram.com/premmaurya222", "_blank", "noopener,noreferrer")} color={"white"} size={23} />
+              <FaGithub onClick={()=>window.open('https://www.github.com/Premkmaurya')} color={"white"} size={23} className="ml-4" />
+              <FaLinkedin onClick={()=>window.open('https://www.linkedin.com/in/prem-maurya-8640b5319/')} color={"white"} size={23} className="ml-4" />
             </div>
-          </div>
-          <div className="link relative overflow-hidden border-y-1 border-white/30">
-            <h1 className="font-[font-v-2] leading-[12.4vw] text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-              cart
-            </h1>
-            <div className="moveLink absolute -top-[100%] h-[4.6rem] flex gap-[18rem] bg-[#D3FD50]">
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="link relative overflow-hidden border-y-1 border-white/30">
-            <h1 className="font-[font-v-2] leading-[12.4vw] text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-              order
-            </h1>
-            <div className="moveLink absolute -top-[100%] h-[4.6rem] flex gap-[18rem] bg-[#D3FD50]">
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="link relative overflow-hidden border-y-1 border-white/30">
-            <h1 className="font-[font-v-2] leading-[12.4vw] text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-              liked
-            </h1>
-            <div className="moveLink absolute -top-[100%] h-[4.6rem] flex gap-[18rem] bg-[#D3FD50]">
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-              <div className="moveX flex text-black">
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/blog/blogImg/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png"
-                />
-                <h2 className="whitespace-nowrap font-[font-v-2]   text-center sm:leading-[6vw] tracking-tight uppercase  text-[4.4rem] sm:text-[5.3rem]">
-                  Pour Tout voir
-                </h2>
-                <img
-                  className="w-[14vw] h-18 pt-2 rounded-full"
-                  src="https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---MenuThumbnail-640x290.jpg"
-                />
-              </div>
-            </div>
+            <p className="text-sm">
+              © 2025 Foodista - Terms - Privacy - Refunds
+            </p>
           </div>
         </div>
       </div>

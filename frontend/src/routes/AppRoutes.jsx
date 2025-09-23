@@ -13,6 +13,8 @@ import SellerProtectedRoute from "../utils/SellerProtectedRoute";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import UserProfile from "../pages/users/UserProfile";
 import Cart from "../pages/users/Cart";
+import About from "../pages/common/About";
+import Contact from "../pages/common/Contact";
 
 function AppRoutes() {
   const { loggedIn } = useContext(context);
@@ -52,6 +54,8 @@ function AppRoutes() {
           </SellerProtectedRoute>
         }
       />
+      <Route path="/about" element={<About /> } />
+      <Route path="/contact-us" element={<Contact /> } />
       <Route path="/user/login" element={<Login />} />
       <Route path="/user/register" element={<Register />} />
       <Route path="/seller/login" element={<SellerLogin />} />
