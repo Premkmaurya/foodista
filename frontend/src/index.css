@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Beach Stone';
+  font-family: 'Beach';
   src: url('/font/beach-stone.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'author';
-  src: url('/font/Author.ttf') format('truetype');
+  src: url('/font/original.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 
 
 body {
-  font-family: Beach Stone;
+  font-family: Beach;
 }
 @layer base {
   input {

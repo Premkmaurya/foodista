@@ -9,7 +9,7 @@ function Header() {
   return (
     <header className="w-full bg-[#EF7722] flex justify-between items-center p-6 lg:px-12">
       <div className="flex items-center space-x-2">
-        <span className="text-3xl font-bold text-white">Foodista</span>
+        <Link to="/" className="text-3xl font-bold text-white">Foodista</Link>
       </div>
       <div className="sm:hidden mr-6">
         <HiMiniBars3BottomRight
@@ -18,7 +18,25 @@ function Header() {
           color="white"
         />
       </div>
-      <nav className="hidden md:flex items-center space-x-6 text-sm font-semibold">
+      <nav className="hidden md:flex items-center space-x-4 text-xs font-semibold">
+        <Link
+          to="/"
+          className="font-light text-white cursor-pointer hover:underline"
+        >
+          home
+        </Link>
+        <Link
+          to="/about"
+          className="font-light text-white cursor-pointer hover:underline"
+        >
+          about us
+        </Link>
+        <Link
+          to="/contact-us"
+          className="font-light text-white cursor-pointer hover:underline"
+        >
+          contact us
+        </Link>
         <Link
           to="/seller/register"
           className="font-light text-white cursor-pointer hover:underline"

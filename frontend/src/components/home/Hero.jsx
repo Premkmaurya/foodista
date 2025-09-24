@@ -32,7 +32,7 @@ function Hero() {
   useGSAP(() => {
     gsap.to(".first", {
       rotate: -40,
-      transform:"translate(-10rem)",
+      transform:"translate(-11rem)",
       duration: 2,
       stagger: 0.2,
       scrollTrigger: {

@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const featuredSections = [
   {
@@ -28,22 +28,23 @@ function Feautre() {
   const featureSectionRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
 
-  useGSAP(() => {
+  useEffect(() => {
     const elements = gsap.utils.toArray(".feature-item");
 
     gsap.from(elements, {
       opacity: 0,
-      y: 40,
+      y:40,
       duration: 2,
-      stagger: 1,
+      stagger: {
+        amount:0.2,
+      },
       scrollTrigger: {
         trigger: featureSectionRef.current,
-        start: "top 60%",
-        end: "center bottom",
-        scrub: true,
+        start: "top 80%",
+        end:"top 40%",
       },
     });
-  });
+  },[]);
 
   return (
     <section

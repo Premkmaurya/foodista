@@ -4,7 +4,7 @@ import FullScreenNav from './components/navbar/FullScreenNav'
 
 const App = () => {
   return (
-    <div className='relative h-screen w-screen overflow-x-hidden'>
+    <div className='relative h-screen w-full'>
       <AppRoutes />
       <FullScreenNav />
     </div>
