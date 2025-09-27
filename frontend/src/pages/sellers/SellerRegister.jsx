@@ -54,7 +54,7 @@ function SellerRegister() {
   return (
     <div className="container min-h-screen w-screen flex text-white overflow-x-hidden relative">
       <div className="w-0 sm:w-[65%] h-full flex fixed top-0 left-0">
-        <div className="w-full h-full flex relative bg-blue-400 overflow-hidden">
+        <div className="w-full h-full flex relative bg-[#EF7722] overflow-hidden">
           <Lottie
             className="absolute -top-[4rem] -left-[2.3rem] w-full h-full object-cover"
             animationData={business}
@@ -99,7 +99,7 @@ function SellerRegister() {
               <button
                 ref={uploadBtnRef}
                 onClick={() => fileRef.current.click()}
-                className="bg-gray-400 w-14 h-14 flex items-center justify-center cursor-pointer rounded-full"
+                className="bg-white border-1 border-black w-14 h-14 flex items-center justify-center cursor-pointer rounded-full"
               >
                 {profilePreview ? (
                   <img
@@ -183,7 +183,7 @@ function SellerRegister() {
               </label>
               <button
                 type="submit"
-                className="w-full bg-blue-400 text-white py-3 hover:rounded-4xl mt-8 transition-all duration-300"
+                className="w-full bg-[#EF7722] text-white py-3 hover:rounded-4xl mt-8 transition-all duration-300"
               >
                 Register
               </button>

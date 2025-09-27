@@ -15,6 +15,7 @@ import UserProfile from "../pages/users/UserProfile";
 import Cart from "../pages/users/Cart";
 import About from "../pages/common/About";
 import Contact from "../pages/common/Contact";
+import Order from "../pages/common/Order";
 
 function AppRoutes() {
   const { loggedIn } = useContext(context);
@@ -56,6 +57,7 @@ function AppRoutes() {
       />
       <Route path="/about" element={<About /> } />
       <Route path="/contact-us" element={<Contact /> } />
+      <Route path="/order" element={<Order /> } />
       <Route path="/user/login" element={<Login />} />
       <Route path="/user/register" element={<Register />} />
       <Route path="/seller/login" element={<SellerLogin />} />

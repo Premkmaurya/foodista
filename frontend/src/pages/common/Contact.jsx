@@ -1,4 +1,4 @@
-import Header from "../../components/home/Header";
+import Header from "../../components/navbar/Header";
 import Call from "../../components/about/Call";
 import GetInTouch from "../../components/contact/GetInTouch";
 import ContactForm from "../../components/contact/ContactForm";
@@ -9,10 +9,10 @@ function Contact() {
     <div className=" text-black/80 min-h-screen">
       <Header />
       <div className="relative py-20 bg-cover bg-center">
-        <div className="absolute inset-0 h-[40vh]">
+        <div className="absolute inset-0 h-[25vh] sm:h-[40vh]">
           <img className="w-full h-full object-cover" src="/image/contact.jpg" alt="" />
         </div>
-        <div className="relative container mx-auto text-center px-6">
+        <div className="relative flex items-center justify-center container mx-auto text-center px-6">
           <h1 className="text-4xl text-white md:text-6xl font-extrabold tracking-tight">
             CONTACT US
           </h1>

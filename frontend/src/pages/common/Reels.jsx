@@ -18,7 +18,7 @@ function Reels() {
   // Fetching videos
   useEffect(() => {
     axios
-      .get("https://backend-9yno.onrender.com/api/food", {
+      .get("http://localhost:3000/api/food", {
         withCredentials: true,
       })
       .then((response) => {
@@ -66,7 +66,7 @@ function Reels() {
 
   const likeHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-9yno.onrender.com/api/food/like",
+      "http://localhost:3000/api/food/like",
       { foodId },
       {
         withCredentials: true,
@@ -75,7 +75,7 @@ function Reels() {
   };
   const saveHandler = async (foodId) => {
     const response = await axios.post(
-      "https://backend-9yno.onrender.com/api/food/save",
+      "http://localhost:3000/api/food/save",
       { foodId },
       {
         withCredentials: true,
@@ -85,7 +85,7 @@ function Reels() {
   const cartHandler = async (foodId) => {
     try {
       const response = await axios.post(
-        "https://backend-9yno.onrender.com/api/food/cart",
+        "http://localhost:3000/api/food/cart",
         { foodId },
         {
           withCredentials: true,
@@ -164,7 +164,7 @@ function Reels() {
                 <p className="text-gray-200 mb-4">{video.description}</p>
 
                 {/* Buy Now Button */}
-                <button className="w-full px-6 py-3 capatalize border-1 backdrop-blue-lg border-white bg-black/40 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:bg-[#357ae8] hover:shadow-xl transform hover:-translate-y-0.5">
+                <button onClick={()=>navigate('/order')} className="w-full px-6 py-3 capatalize border-1 backdrop-blue-lg border-white bg-black/40 text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-0.5">
                   Order Now
                 </button>
               </div>

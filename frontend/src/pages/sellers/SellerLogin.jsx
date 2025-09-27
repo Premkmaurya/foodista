@@ -89,7 +89,7 @@ function SellerLogin() {
               </label>
               <button
                 type="submit"
-                className="w-full bg-blue-400 text-white py-3 hover:rounded-4xl transition-all duration-300"
+                className="w-full bg-[#EF7722] text-white py-3 hover:rounded-4xl transition-all duration-300"
               >
                 Login
               </button>
